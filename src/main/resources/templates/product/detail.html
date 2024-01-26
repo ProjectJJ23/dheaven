@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+
+    <!--<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fdetail_ing.css">-->
+    <link rel="stylesheet" href="css/fdetail_ing.css">
+
+    <!-- 컨테이너 시작 -->
+    <div id="contents">
+        <!-- 펀딩하기 -->
+        <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s"data-wow-delay="0.5s">
+            <div class="container" id="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="hidden" id="funnum" name="funnum" value="${vo.funnum }">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="moviePoster wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                                    <img class="sum-img" src="img/product/tradi.jpg" id="imgn">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class = "fundingMovie_type"><p>영화 장르</p><span class="material-symbols-outlined">chevron_right</span><p>코미디</p></div>
+                                            <h2>${vo.funtitle }</h2>
+                                            <p>${vo.funpreview }</p>
+                                            <div class = "funding_all">
+                                                <div class = "funding_status">
+                                                    <div class = "funding_status_1st">
+                                                        <div>
+                                                            <h4>13,000</h4><h5>% 달성</h5>
+                                                        </div>
+                                                        <span>23일남음</span>
+                                                    </div>
+                                                    <div class = "funding_status_2ed">
+                                                        <div>
+                                                            <h4>2,500,5000</h4><h5>원 달성</h5>
+                                                        </div>
+                                                        <span>107명 참여</span>
+                                                    </div>
+                                                </div>
+                                                <div class="funding_detailInfo">
+                                                    <!-- 목표금액은 딜성시 화면에 보여주는 걸로 !!! -->
+                                                    <div class = "funding_detailAim"><p>목표금액</p><span>${vo.targetprice }원 달성</span></div>
+                                                    <div class = "funding_detailPeriod"><p>펀딩기간</p><span>${vo.sdate }~${vo.fdate }</span></div>
+                                                    <div class = "funding_detailPay"><p>결제일</p><span>${vo.fdate }로 부터 3일 후 결제 진행</span></div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <!-- 0826_박형지 : 펀딩참여여부 확인을 위한 vo값 받기 -->
+                                            <div>
+                                                <input type="hidden" id="funstatus1" name="funstatus" value="${pvo.funstatus }">
+                                                <input type="hidden" id="fmem_num1" name="fmem_num" value="${sessionScope.sessionNO }">
+                                                <input type="hidden" id="funnum_num1" name="funnum_num" value="${vo.funnum }">
+                                            </div>
+
+                                            <form action="addFCoin" class = "gotoFunding">
+
+                                                <select id="fundingAmountSelect">
+                                                    <option value="" style="display:none;">펀딩할 금액 선택</option>
+                                                    <option value="10000">10,000원</option>
+                                                    <option value="30000">30,000원</option>
+                                                    <option value="50000">50,000원</option>
+                                                    <option value="0">자유롭게 펀딩하기</option>
+                                                </select>
+                                                <input type="number" id="funmoney" name="funmoney" min="10000" max="1000000" step="10000" placeholder="펀딩할 금액을 입력해주세요">
+
+                                                <input type="hidden" id="fmem_num" name="fmem_num" value="${sessionScope.sessionNO }">
+                                                <input type="hidden" id="funstatus" name="funstatus" value="P">
+                                                <input type="hidden" id="funnum_num" name="funnum_num" value="${vo.funnum }">
+                                                <input type="hidden" id="joindate" name="joindate">
+                                                <div class="funding_Btnetc">
+                                                    <button class="fBtn" type="submit" id="fBtn">펀딩하기</button>
+                                                    <div class = "likeShareBtn">
+                                                        <a class="like-btn" href="#">
+                                                            <div>
+                                                                <span class="material-symbols-outlined">favorite</span>
+                                                                <p style="margin: 0">좋아요</p>
+                                                            </div>
+                                                        </a>
+                                                        <a class="share-btn" href="#">
+                                                            <div>
+                                                                <span class="material-symbols-outlined">share</span>
+                                                                <p style="margin: 0">공유</p>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div><!-- col-lg-12 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 시놉시스 -->
+        <div class="container" style="clear: both;">
+            <div class="row">
+                <div class="col-12">
+                    <hr>
+                    <div class="single-blog-area blog-style-2">
+                        <div class="single-blog-content">
+                            <div class="line"></div>
+                            <span class="post-tag">영화 소개</span>
+                            <h4>${vo.funtitle }</h4>
+                            <span>${vo.content }</span>
+                        </div>
+                    </div>
+                    <!-- 디테일 컷 -->
+                    <div class="blog-post-author d-flex" style = "border-bottom:none;margin:20px 0 80px;padding:20px 10px;">
+                        <div class="author-info" style = "width:1100px;">
+                            <div class="line"></div>
+                            <span class="author-role">디테일 컷</span>
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src = "img/product/funding/barbi.png"></div>
+                                    <div class="swiper-slide"><img src = "img/img/product/funding/her.jpg"></div>
+                                    <div class="swiper-slide"><img src = "img/product/funding/mini.jpg"></div>
+                                    <div class="swiper-slide"><img src = "img/product/mainPage/mainPagePoster1.jpg"></div>
+                                    <div class="swiper-slide"><img src = "img/product/mainPage/mainPagePoster2.jpg"></div>
+                                    <div class="swiper-slide"><img src = "img/product/mainPage/mainPagePoster3.jpg"></div>
+                                    <div class="swiper-slide"><img src = "img/product/mainPage/mainPagePoster4.jpg"></div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 감독 소개 -->
+                    <div class="blog-post-author mt-0 d-flex">
+                        <div class="director_img">
+                            <img src="img/product/funding/director.jpg">
+                        </div>
+                        <div class="author-info">
+                            <div class="line"></div>
+                            <span class="author-role">감독</span>
+                            <h5>이철하 감독</h5>
+                            <p>중앙대학교 일어일문학과를 졸업했으며, 광고회사 코래드 프로듀서와 《시월애》 조감독을 거쳐 미국 유학시절
+                                우연한 기회에 공동 연출한 god의 뮤직비디오가 플래티넘 히트를[1] 기록하면서 여러 편의 뮤직비디오와 CF에서
+                                연출력과 비주얼리스트로써의 역량을 입증했다. 《사랑따윈 필요없어》로 데뷔했다.</p>
+                        </div>
+                    </div>
+                    <!-- 배우 소개 -->
+                    <div class="single-blog-area blog-style-2 mb-50">
+                        <div class="single-blog-content">
+                            <div class="line"></div>
+                            <span class="post-tag">배우 소개</span>
+                            <div class="actor-profile">
+                                <img class="actor-photo" src="img/product/funding_detail/actor1.jpg">
+                                <img class="actor-photo" src="img/product/funding_detail/actor2.jpg">
+                                <img class="actor-photo" src="img/product/funding_detail/actor3.jpg">
+                                <img class="actor-photo" src="img/product/funding_detail/actor4.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 펀딩목적 -->
+                    <div class="blog-post-author mt-100 d-flex">
+                        <div class="author-info">
+                            <div class="line"></div>
+                            <span class="author-role">펀딩 목적</span>
+
+                            <p>${vo.funpurpose }</p>
+                        </div>
+                    </div>
+
+                    <!-- 펀딩예산안 -->
+                    <div class="single-blog-area blog-style-2 mb-50">
+                        <div class="single-blog-content">
+                            <div class="line"></div>
+                            <a href="#" class="post-tag">프로젝트 예산</a>
+                            <div>
+                                <br>${vo.funbudget }
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="blog-post-author mt-100 d-flex">
+                        <div class="author-info">
+                            <div class="line"></div>
+                            <span class="author-role">영상</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 데이터 넣기 -->
+
+
+        <!-- <div id="footer">
+            <button class="button1">펀딩하기</button>
+            <a style="display: inline-block; margin-left: 220px;" href="#">
+                <div
+                    style="border: 1px solid #d0d0d0; border-color: #d0d0d0; text-align: center; border-radius: 4px; padding: 4px 4px;">
+                    <i class="material-symbols-outlined">share</i><br>공유하기
+                </div>
+            </a>
+        </div> -->
+
+        <!-- div id="footer" style="display: flex; align-items: center;">
+                  <button class="button1">펀딩하기</button>
+                 <div class = "share1" style="padding: 4px 12px; text-align: center; margin-left: 400px;">
+                    <button style=" border:1px solid black; border-radius: 7px; background-color: #fff;" >
+                        <p class="material-symbols-outlined">share</p>
+                        <p style="margin: 0">공유하기</p>
+                    </button>
+                </div>
+             </div-->
+
+
+
+    <!--    <div class="dropdown">
+            <button class="dropbtn">
+                <span class="dropbtn_icon">more_horiz</span> 펀딩할 금액을 선택해주세요
+            </button>
+            <div class="dropdown-content">
+                <a href="#">${vo.cost }원</a> <a href="#">30000원</a> <a href="#">50000원</a>
+                <a href="#">100000원</a> <a href="#">자유롭게 펀딩하기</a>
+            </div>
+        </div>
+-->
+    </div>
+    <!-- 컨테이너 끝 -->
+
+
+  <script>
+        $(function() {
+            $('#fBtn').click(function(e) {
+                alert($('#funmoney').val() + "원 펀딩확인");
+                //e.preventDefault();
+            });
+        });
+
+
+        // <select> 요소에 이벤트 리스너 추가
+        document.getElementById('fundingAmountSelect').addEventListener('change', function() {
+            var inputElement = document.getElementById('funmoney');
+            var selectedOption = this.options[this.selectedIndex];
+
+            if (selectedOption.value === '0') {
+                inputElement.style.display = 'block'; // "자유롭게 펀딩하기"가 선택되면 <input> 요소를 표시
+            } else {
+                inputElement.style.display = 'none'; // 다른 옵션이 선택되면 <input> 요소를 숨김
+            }
+        });
+
+
+
+        document.getElementById('fundingAmountSelect').addEventListener('focus', function(e) {
+            this.style.borderColor='#00c4c4';
+            this.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+        });
+
+        document.getElementById('fundingAmountSelect').addEventListener('blur', function(e) {
+            this.style.borderColor='';
+            this.style.boxShadow ='';
+        });
+
+
+        document.getElementById('funmoney').addEventListener('focus', function(e) {
+            this.style.borderColor='#00c4c4';
+            this.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+        });
+
+        document.getElementById('funmoney').addEventListener('blur', function(e) {
+            this.style.borderColor='';
+            this.style.boxShadow ='';
+        });
+
+
+
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            keyboard: {
+                enabled: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+</div>
+</html>

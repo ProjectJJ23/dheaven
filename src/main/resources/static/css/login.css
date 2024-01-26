@@ -1,0 +1,183 @@
+@charset "EUC-KR";
+li {list-style: none;}
+
+/* 로그인 폼(loginForm) */
+.wrap_loginForm {width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; /*margin-bottom: 100px;*/ border-top: 1px solid #cacaca; background-color: #FDF5EB;}
+.wrap_loginForm .login_in {width: 40%; height:80%; border-radius: 20px; display: flex; justify-content: center; align-items: center; flex-direction: column; max-width: 600px; background-color: #FFFFFF;}
+.wrap_loginForm .login_in #loginInfo{width:50%;}
+.wrap_loginForm .login_in .login_info h2 {font-weight:bold; font-size: 2em; text-align: center; margin-top: 10px;}
+.wrap_loginForm .login_in .login_info {width:100%;}
+.wrap_loginForm .login_in .login_info .login_email {margin-top: 20px; width: 100%;}
+.wrap_loginForm .login_in .login_info .login_email input {width: 100%; height: 50px; border-radius: 5px; margin-top: 10px; padding: 0px 20px; border: 1px solid lightgray; outline: none;}
+.wrap_loginForm .login_in .login_info .login_pw {margin-top: 20px; width: 100%;}
+.wrap_loginForm .login_in .login_info .login_pw input {width: 100%; height: 50px; border-radius: 5px; margin-top: 10px; padding: 0px 20px; border: 1px solid lightgray; outline: none;}
+.wrap_loginForm .login_in .login_info .login_etc {width: 100%; font-size: 13px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; margin-top: 10px;}
+.wrap_loginForm .login_in .login_info .login_etc .forgot_pw {display: flex;}
+.wrap_loginForm .login_in .login_info .login_etc .forgot_pw span {font-size: 13px; color: #d2d2d2;}
+.wrap_loginForm .login_in .login_info .login_etc .forgot_pw span:hover {font-size: 13px; color: #868686;}
+.wrap_loginForm .login_in .login_info .login-icon .icon_kakao {color: #d8821a; align-items: center; cursor:pointer; gap:10px; display:flex; justify-content: center; background-color: #F6E10A; width:100%; height:50px; border-radius: 5px; padding: 10px 10px; margin: 10px 0; text-align: center;}
+.wrap_loginForm .login_in .login_info .login-icon .icon_kakao:hover {color: #d8821a; background-color: #e8d61a;}
+.wrap_loginForm .login_in .login_info .login-icon .icon_naver {color:#fff; align-items: center; cursor:pointer; gap:10px; display:flex; justify-content: center; background-color: #1EC800; width:100%; height:50px; border-radius: 5px; padding: 10px 10px; margin: 10px 0; text-align: center;}
+.wrap_loginForm .login_in .login_info .login-icon .icon_naver:hover {color: #ffffff; background-color: #1cb700;}
+.wrap_loginForm .login_in .login_info .login-icon span {font-weight: 500;}
+
+.wrap_loginForm .login_in .login_info .to_join{display: flex; margin-top: 20px; align-items: flex-end; justify-content: space-between;}
+.wrap_loginForm .login_in .login_info .to_join s pan{/* margin: 10px 0px; padding: 0 30px; */ text-align: center; /* font-weight: bold; */}
+.wrap_loginForm .login_in .login_info .to_join a{text-decoration: underline; text-align: center; color: #EAA636;}
+.wrap_loginForm .login_in .login_info .to_join a:hover {text-decoration: underline; text-align: center; color: #c08a2d;}
+
+.wrap_loginForm .login_in .login_info .login_btn {margin-top: 50px; width: 100%; text-align: center;}
+.wrap_loginForm .login_in .login_info .login_btn input {width: 100%; height: 50px; border: 0; outline: none; border-radius: 40px; background: linear-gradient(to left, rgb(61, 70, 252), rgb(150, 48, 254)); color: white; font-size: 1.2em; letter-spacing: 2px;}
+
+.submit-button {font-family: 'NanumSquareNeo-Variable';	height: 50px; font-family: 'Roboto', sans-serif; font-size: 15px; text-transform: uppercase; letter-spacing: 2.5px; font-weight: bolder; color: #EAA636; background: #1E1916; border: none; border-radius: 5px; cursor: pointer; outline: none; width: 100%;}
+.submit-button:hover{color: #1E1916; background: #EAA636;}
+/* --------로그인 폼(loginForm)----------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* 회원가입 (join) */
+.wrap_join {width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; border-top: 1px solid #cacaca; background-color: #FDF5EB;}
+.wrap_join .login_in {width: 40%; height:70%; border-radius: 20px; display: flex; justify-content: center; align-items: center; flex-direction: column; max-width: 600px; background-color: #fff;}
+.wrap_join .login_in #loginInfo{width:50%;}
+.wrap_join .login_in .login_info h2 {font-weight:bold; font-size: 2em; text-align: center; margin-bottom: 30px;}
+.wrap_join .login_in .login_info{width:100%; text-align: center;}
+.wrap_join .login_in .login_info .login-icon .icon_kakao {color: #d8821a; align-items: center; cursor:pointer; gap:10px; display:flex; justify-content: center; background-color: #F6E10A; width:100%; height:50px; border-radius: 5px; padding: 10px 10px; margin: 10px 0; text-align: center;}
+.wrap_join .login_in .login_info .login-icon .icon_kakao:hover {color: #d8821a; background-color: #e8d61a;}
+.wrap_join .login_in .login_info .login-icon .icon_naver {color:#fff; align-items: center; cursor:pointer; gap:10px; display:flex; justify-content: center; background-color: #1EC800; width:100%; height:50px; border-radius: 5px; padding: 10px 10px; margin: 10px 0; text-align: center;}
+.wrap_join .login_in .login_info .login-icon .icon_naver:hover {color: #ffffff; background-color: #1cb700;}
+.wrap_join .login_in .login_info .login-icon span {font-weight: 500;}
+
+.wrap_join .login_in .login_info .to_join{display: flex; margin-top: 24px; align-items: flex-end; justify-content: space-between;}
+.wrap_join .login_in .login_info .to_join span{/* margin: 10px 0px; padding: 0 30px; */ text-align: center; /* font-weight: bold; */}
+.wrap_join .login_in .login_info .to_join a{text-decoration: underline; text-align: center; color: #EAA636;}
+.wrap_join .login_in .login_info .to_join a:hover {text-decoration: underline; text-align: center; color: #c08a2d;}
+
+
+.wrap_join .login_in .login_info .login_btn {margin-top: 50px; width: 100%; text-align: center;}
+.wrap_join .login_in .login_info .login_btn input {width: 100%; height: 50px; border: 0; outline: none; border-radius: 40px; background: linear-gradient(to left, rgb(61, 70, 252), rgb(150, 48, 254)); color: white; font-size: 1.2em; letter-spacing: 2px;}
+
+/*.submit-button {font-family: 'NanumSquareNeo-Variable'; height: 50px; font-family: 'Roboto', sans-serif; font-size: 15px; text-transform: uppercase; letter-spacing: 2.5px; font-weight: bold; color: #fff; background-color: #00c4c4; border: none; border-radius: 5px; cursor: pointer; outline: none; width: 100%;}*/
+
+/* 회원가입 (join) - 말풍선 css*/
+.speech-bubble {position: relative; display: inline-block; padding: 10px; background-color: white; border: 2px solid #d4d4d4; border-radius: 30px; width: 200px; height: 40px; margin-bottom: 10px; font-size:13px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /*그림자 효과 설정 */}
+.speech-bubble::after {content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); border-width: 10px; border-style: solid; border-color: #d4d4d4 transparent transparent transparent;}
+/*말풍선 css 끝*/
+
+.login_info .speech-bubble img {width:10%;}
+/* --------회원가입 (join)----------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* 이메일로 회원가입 (joinForm) */
+.wrap_joinForm {width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; border-top: 1px solid #cacaca; background-color: #FDF5EB;}
+.wrap_joinForm .join_in {width: 40%; height:90%; border-radius: 20px; display: flex; justify-content: center; align-items: center; flex-direction: column; max-width: 600px; background-color: #fff;}
+.wrap_joinForm .join_in h2 {font-weight:bold; font-size: 2em; text-align: center; margin-bottom: 30px;}
+.wrap_joinForm .join_in .basic-info {margin:70px auto;}
+.wrap_joinForm .join_in .text-box {margin-top: 10px;}
+.wrap_joinForm .join_in .basic-info .join_email .input-box input {text-indent: 7px; border: 1px solid #a4a4a4; border-radius: 4px;}
+.wrap_joinForm .join_in .basic-info .join_pw .input-box {display: grid;}
+.wrap_joinForm .join_in .basic-info .join_pw .input-box input:first-child {margin-bottom: 10px; text-indent: 7px; border: 1px solid #a4a4a4; border-radius: 4px;}
+.wrap_joinForm .join_in .basic-info .join_pw .input-box input:nth-child(2) {text-indent: 7px; border: 1px solid #a4a4a4; border-radius: 4px;}
+
+.wrap_joinForm .join_in .input-box input {margin-top: 10px}
+.wrap_joinForm .join_in .input-box input:focus {outline: 1px solid #ffc799;}
+.wrap_joinForm .join_in .personal-info h5 {font-weight: bold;}
+.wrap_joinForm .join_in .personal-info .join_name .input-box input {text-indent: 7px; border: 1px solid #a4a4a4; border-radius: 4px;}
+.wrap_joinForm .join_name input {width: 300px; height: 40px;}
+.wrap_joinForm .join_email input {width: 220px; height: 40px;}
+.wrap_joinForm .group-img input {border: none; display: inline-block; width: 200px; justify-content: center;}
+.wrap_joinForm .join_gender span {margin-right: 20px;}
+.wrap_joinForm .join_birth input {width: 300px; height: 40px;}
+.wrap_joinForm .join_nname input {width: 220px; height: 40px}
+.wrap_joinForm .join_pw input {width: 300px; height: 40px;}
+.wrap_joinForm .join_tel input {width: 220px; height: 40px}
+.wrap_joinForm .submit input {width:310px; margin-top: 10px;}
+.wrap_joinForm .material-symbols-outlined {font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48}
+
+.wrap_joinForm .join_in .to_join{display: flex; margin-top: 24px; align-items: flex-end; justify-content: space-between;}
+.wrap_joinForm .join_in .to_join span{/* margin: 10px 0px; padding: 0 30px; */ text-align: center; /* font-weight: bold; */}
+.wrap_joinForm .join_in .to_join a{text-decoration: underline; text-align: center; color: #EAA636;}
+.wrap_joinForm .join_in .to_join a:hover {text-decoration: underline; text-align: center; color: #c08a2d;}
+
+.wrap_joinForm .button {
+    width: 80px;
+    height: 40px;
+    font-family: 'NanumSquareNeo-Variable';
+    font-size: small;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: white;
+    background-color: #d9a783;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+/* --------이메일로 회원가입 (joinForm)----------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+h2{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+h3{font-family: 'NanumSquareNeo-Variable';}
+h4{font-family: 'NanumSquareNeo-Variable';}
+h5{font-family: 'NanumSquareNeo-Variable';}
+h6{font-family: 'NanumSquareNeo-Variable';}
+p{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+span{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+div{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+dl{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+b{font-family: 'NanumSquareNeo-Variable';}
+button{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+*/

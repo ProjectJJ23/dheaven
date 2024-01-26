@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+
+    <link rel="stylesheet" href="css/myDetailInfo.css">
+
+    <div class = "contentWrapper">
+        <div class = "container">
+            <div class = "profile">
+                <div class = "profile-box">
+                    <div class ="profile-img">
+                        <a href = "ip자리/mypage?email=세션아이디자리"><img src="img/team-3.jpg"></a>
+                    </div>
+                    <div class = "profile_info">
+                        <div class ="profile_userName"><span>${sessionScope.sessionName}</span><b>님</b></div>
+                        <div class = "profile_userEmail"><p>${vo.email }</p></div>
+                        <span class = "profile_custom">
+						<p class = "profile_customType">개인회원</p> <!-- 개인회원인지 기업회원인지 변경 -->
+						<p>·</p>
+						<p class = "profile_customGrade">등급</p> <!-- 등급 변경 -->
+					</span>
+                    </div><!-- profile_info -->
+                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB" style = "margin: 12px 18px;height: 1px;">
+                    <div class = "profileSide_bar">
+                        <ul class = "profileSide_bar_list">
+                            <li>
+                                <a href= "myDetailInfo?email=세션아이디자리" class="active">
+                                    <span>내 정보 확인 · 변경</span>
+                                </a>
+                            </li>
+                            <li>
+                              <!--  <a href= "pwdedit?num=${vo.num }">-->
+                                    <span>비밀번호 설정</span>
+                                <!--</a>-->
+                            </li>
+                            <li>
+                               <!-- <a href= "delete?email=${vo.email }">-->
+                                    <span>회원 탈퇴</span>
+                               <!-- </a>-->
+                            </li>
+                        </ul><!-- profileSide_bar_list -->
+                    </div><!-- profileSide_bar -->
+                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB" style = "margin: 12px 18px;height: 1px;">
+                    <div class = "login_method" style = "font-size: 12px;">
+                        <img src = "img/myInfo/img.png" style = "width:15px;">
+                        <span>네이버로 로그인 중</span>
+                    </div>
+                    <div class = "logout">
+                        <a href = "logout">
+                            <button type = "button">
+                                <span>로그아웃</span>
+                            </button>
+                        </a>
+                    </div><!-- logout -->
+                </div><!-- profile-box -->
+            </div><!-- profile -->
+            <div class = "InfoDetailContent">
+                <div class = "contents-box" >
+                    <div class = "contents">
+                        <h4>기본정보</h4>
+                        <form method="post" action="infoupdate" autocomplete="off" id=editform>
+                            <input type="hidden" name="num" value="${sessionScope.sessionNO }">
+                            <div class = "content_list">
+                                <div class= "content_list_item">
+                                    <a href = "#">
+                                        <dl class = "profileImg">
+                                            <dt>
+                                                <div class ="profile-img">
+                                                    <img src="img/team-3.jpg"><!-- 0903_박형지: 이미지 연결함(사이즈 조정 필요) -->
+                                                </div>
+
+                                            </dt>
+                                            <dd>
+                                                <strong>${sessionScope.sessionNNAME}</strong><b>님</b>&nbsp;<span>프로필 사진</span>
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href = "#">
+                                        <dl>
+                                            <dt>
+                                                <i class="fa-solid fa-ranking-star"></i>
+                                                <span>등급</span>
+                                            </dt>
+                                            <dd>
+                                                ${vo.grade}
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href="#" style="display: flex; align-items: center;">
+                                        <dl id="emailInput">
+                                            <dt>
+                                                <i class="fa-regular fa-envelope"></i>
+                                                <span>이메일</span>
+                                            </dt>
+                                            <dd>
+                                                <div id="emailDisplayWrapper">
+                                                    <span id="emailDisplay">${vo.email}</span>
+                                                </div>
+                                                <div id="emailEditWrapper" style="display: none;">
+                                                    <input type="email" id="emailInputField" value="${vo.email}">
+                                                    <button type="button" id="saveBtn" style = "display: inline;border: 1px solid #fff;background-color: rgb(165, 229, 230);margin-left: 10px;border-radius: 4px;width: 40px;height: 25px;"><span>저장</span></button>
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <!-- <button type="button" id="editBtn" style="width: 50px; height: 30px; border: none;"><span>변경</span></button>
+                                        <span id="target"></span> -->
+                                    </a>
+
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href = "#" style = "display: flex;align-items: center;">
+                                        <dl id = "idInput">
+                                            <dt>
+                                                <i class="fa-solid fa-user"></i>
+                                                <span>이름</span>
+                                            </dt>
+                                            <dd>
+                                                <div id = ""></div>
+                                                <span>${vo.name}</span>
+                                            </dd>
+                                        </dl>
+                                        <!-- <button type = "button" id="" style = "width: 50px; height: 30px; border: none;"><span>변경</span></button> -->
+                                    </a>
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href = "#">
+                                        <dl id = "nicknameInput">
+                                            <dt>
+                                                <i class="fa-regular fa-user"></i>
+                                                <span>닉네임</span>
+                                            </dt>
+                                            <dd>
+                                                <input type="text" name="nickname" class="form-control" id="nickname" value="${vo.nickname}" style = " height: 30px; font-size: 13px;">
+                                                <span id="target2"></span>
+                                            </dd>
+                                            <dd><button type="button" class="button" id="nnameChkBtn" style = "padding: 5px;cursor: pointer;background-color: #eee;border: 1px solid #ababab;">중복체크</button></dd>
+                                        </dl>
+                                    </a>
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href = "#" style = "display: flex;align-items: center;">
+                                        <dl>
+                                            <dt>
+                                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                                <span>전화번호</span>
+                                            </dt>
+                                            <dd>
+                                                ${vo.tel}
+                                            </dd>
+                                        </dl>
+                                        <!-- <button type = "button" id="" style = "width: 50px; height: 30px; border: none;"><span>변경</span></button> -->
+                                    </a>
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href = "#">
+                                        <dl>
+                                            <dt>
+                                                <i class="fa-solid fa-venus-mars"></i>
+                                                <span>성별</span>
+                                            </dt>
+                                            <dd>
+                                                ${vo.memgender}
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href = "#">
+                                        <dl>
+                                            <dt>
+                                                <i class="fa-solid fa-cake-candles"></i>
+                                                <span>생년월일</span>
+                                            </dt>
+                                            <dd>
+                                                ${vo.birthday}
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                    <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                    <a href = "#">
+                                        <dl>
+                                            <dt>
+                                                <i class="fa-solid fa-right-to-bracket"></i>
+                                                <span>가입일</span>
+                                            </dt>
+                                            <dd>
+                                                <span>${vo.mdate}</span>
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                </div><!-- content_list_item -->
+                            </div><!-- content_list -->
+                            <div class = "modi_btns">
+                                <button type="submit" class="button2"><span>수정하기</span></button>
+                            </div>
+                        </form>
+
+                        <h4>부가 정보 관리</h4>
+                        <div class = "content_list">
+                            <div class= "content_list_item">
+                                <a href = "#">
+                                    <dl>
+                                        <dt>
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                            <span>배송지 관리</span>
+                                        </dt>
+                                        <dd>
+
+                                        </dd>
+                                    </dl>
+                                </a>
+                                <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                                <a href = "#">
+                                    <dl>
+                                        <dt>
+                                            <i class="fa-regular fa-circle-user"></i>
+                                            <span>개인정보 이용내역</span>
+                                        </dt>
+                                        <dd>
+
+                                        </dd>
+                                    </dl>
+                                </a>
+                            </div><!-- content_list_item -->
+                        </div><!-- content_list -->
+                    </div><!-- contents -->
+                </div><!-- contents-box -->
+                <!-- AD -->
+                <div class ="eventBanner-start">
+                    <div class = "eventBanner" style = "background-color: rgb(165, 229, 230); height:76px; margin:30px 0; border-radius: 8px;">
+                        <a href = "#">
+                            <div class="bannerInner" style="margin: 0 auto; width: 320px; height: 100%;">
+                                <div class="banner-content" style="padding: 15px 14px 0 9px; width: 100%; height: 100%; box-sizing: border-box;">
+                                    <div class="banner-text" style="display: flex; align-items: center;">
+                                        <img src="img/myInfo/business-funding.jpg" alt="이미지" style="max-width: 100px; height: auto; margin-right: 10px;">
+                                        <div>
+                                            <p style="margin-bottom: 0; color: black;">LAURA 광고센터에서</p>
+                                            <b>펀딩 홍보를 시작해보세요</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div> <!-- AD-end -->
+                <!--  <div class="event_AD" style = "display:flex;">
+                    <img src = "${rPath }/img/myInfo/attend.jpg" style = "width:200px; hieght:100px;">
+                    <img src = "${rPath }/img/blog-img/A101.png" style = "width:200px; hieght:100px;">
+                </div>-->
+            </div><!-- InfoDetailContent -->
+        </div><!-- container -->
+    </div><!-- contentWrapper -->
+
+
+
+    <script>
+        <!-- 버튼 클릭 시 글씨 색 변경 기능 -->
+        $(document).ready(function() {
+            $('.profileSide_bar_list li a').click(function() {
+                // 클릭된 링크의 span에 'active' 클래스 추가
+                $('.profileSide_bar_list li a').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+
+
+        <!-- 닉네임 중복 체크 -->
+        $(function() {
+            $('#nnameChkBtn').click(function(e) {
+                //alert("Test");
+                e.preventDefault();
+                let nnamev = $('#nickname').val();
+
+                //Ajax 통신의 캐시 기능을 삭제
+                $.ajaxSetup({
+                    cache:false
+                });
+                //Ajax 처리
+                let path = "<%=application.getContextPath()%>/nickcheck?nickname="+nnamev;
+                $.ajax({
+                    url:path,
+                    success:function(resData){ //callbac 함수인 xhr.responseText 합친 개념
+                        let idCnt = parseInt(resData);
+                        let msg = "";
+                        if (idCnt === 0) {
+                            msg = "사용 가능한 닉네임 입니다.";
+                            $('#target2').css({"color":"#00c4c4" });
+                        } else {
+                            msg = "이미 사용중인 닉네임 입니다.";
+                            $('#target2').css("color","#fe5147");
+                        }
+                        $('#target2').html(msg);
+
+                    }
+                });
+            });
+        });
+
+        //마이페이지에서 닉네임 중복확인시 높이 조절되는 기능
+        document.getElementById("nnameChkBtn").addEventListener("click", function() {
+            var height = document.getElementById("nicknameInput");
+            height.style.height = "40px";
+        });
+
+
+        /*  var editBtn = document.getElementById("editBtn");
+         var saveBtn = document.getElementById("saveBtn");
+         var emailDisplay = document.getElementById("emailDisplay");
+         var emailInputField = document.getElementById("emailInputField");
+         var emailDisplayWrapper = document.getElementById("emailDisplayWrapper");
+         var emailEditWrapper = document.getElementById("emailEditWrapper");
+
+         editBtn.addEventListener("click", function() {
+           if (editBtn.textContent === "변경") {
+             editBtn.textContent = "취소";
+             saveBtn.style.display = "inline"; // 저장 버튼 표시
+             emailDisplayWrapper.style.display = "none";
+             emailEditWrapper.style.display = "block";
+           } else {
+             editBtn.textContent = "변경";
+             saveBtn.style.display = "none"; // 저장 버튼 감춤
+             emailDisplayWrapper.style.display = "block";
+             emailEditWrapper.style.display = "none";
+           }
+         });
+
+         saveBtn.addEventListener("click", function() {
+           var newEmail = emailInputField.value; // 변경된 이메일 가져오기
+           // 여기서 서버로 변경된 이메일을 전송하거나 저장하는 로직을 추가할 수 있습니다.
+           emailDisplay.textContent = newEmail; // 화면에 변경된 이메일 표시
+           editBtn.textContent = "변경"; // 버튼 텍스트 원래대로 변경
+           saveBtn.style.display = "none"; // 저장 버튼 감춤
+           emailDisplayWrapper.style.display = "block";
+           emailEditWrapper.style.display = "none";
+         });
+          */
+
+    </script>
+
+</div>
+</html>

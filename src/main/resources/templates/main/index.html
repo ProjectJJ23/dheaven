@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+
+<!--<body>-->
+<div layout:fragment="content">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+        <!--header에 포함-->
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+         <th:block th:replace="layout/nav :: navFragment"></th:block>
+    <!-- Navbar End -->
+
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 pb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="img/background/back1.jpg" alt="">
+                <div class="owl-carousel-inner">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-lg-8">
+                                <p class="text-primary text-uppercase fw-bold mb-2">// 술 매니아들을 위한</p>
+                                <h1 class="display-1 text-light mb-4 animated slideInDown">주당들의 천국</h1>
+                                <p class="text-light fs-5 mb-4 pb-3">
+                                안녕하세요. 술 종류에 따른 맞춤 안주 쇼핑몰, 주당들의 천국 입니다.</p>
+                                <a th:href = "@{/join}" class="btn btn-primary rounded-pill py-3 px-5">회원가입하고 혜택받기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="img/background/back2.jpg" alt="">
+                <div class="owl-carousel-inner">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-lg-8">
+                                <p class="text-primary text-uppercase fw-bold mb-2">// 술 매니아들을 위한</p>
+                                <h1 class="display-1 text-light mb-4 animated slideInDown">주당들의 천국</h1>
+                                <p class="text-light fs-5 mb-4 pb-3">환영합니다. 회원가입을 하면 많은 혜택을 드립니다. 어서 가입하세요!</p>
+                                <a th:href = "@{/join}" class="btn btn-primary rounded-pill py-3 px-5">회원가입하고 혜택받기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- Facts Start --><!--
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-certificate fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Years Experience</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">50</h1>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-users fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Skilled Professionals</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">175</h1>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-bread-slice fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Total Products</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">135</h1>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-cart-plus fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Today Order</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">9357</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Facts End -->
+
+
+    <!-- Product Start 노란부분 합-->
+    <div class="container-xxl bg-light my-6 py-6 pt-0">
+        <div class="container">
+
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="text-primary text-uppercase mb-2">// 출시기념 세일! </p>
+                <h1 class="display-6 mb-4">New 신상 안주!</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill px-3 mb-3">와인</div>
+                            <h3 class="mb-3">치즈플래터</h3>
+                            <span>입에서 살살녹는 고급 치즈플래터</span>
+                            <div class="content-row css-1066lcq e1cmg4vm4">
+                                <div class="product-price discount-price css-1fttcpj ei5rudb2">
+                                  <!-- 죽은가격-->
+                                    <div><span class="dimmed-price css-18tpqqq ei5rudb2" style="text-decoration: line-through"  >
+                                        28,900<span class="won">원
+                                    </span></span></div>
+                                    <div class="discount"><span class="discount-rate css-19lkxd2 ei5rudb0">10%</span>
+                                        <span class="sales-price css-18tpqqq ei5rudb1">25,900<span class="won">원</span>
+                                        </span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/special/cheese1.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" th:href="@{/join}"><i class="fa fa-eye text-primary"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">소주</div>
+                            <h3 class="mb-3">겨울 어묵탕</h3>
+                            <span>추운 겨울에 이거 하나면 든든!</span>
+                            <div class="content-row css-1066lcq e1cmg4vm4">
+                                <div class="product-price discount-price css-1fttcpj ei5rudb2">
+                                    <!-- 죽은가격-->
+                                    <div><span class="dimmed-price css-18tpqqq ei5rudb2" style="text-decoration: line-through"  >
+                                        12,980<span class="won">원
+                                    </span></span></div>
+                                    <div class="discount"><span class="discount-rate css-19lkxd2 ei5rudb0">20%</span>
+                                        <span class="sales-price css-18tpqqq ei5rudb1">10,380<span class="won">원</span>
+                                        </span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/special/fishcake1.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" th:href="@{/join}"><i class="fa fa-eye text-primary"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">와인</div>
+                            <h4 class="mb-3">카프리제</h4>
+                            <span>다이어트에도 걱정없는 좋은 안주!</span>
+                            <div class="content-row css-1066lcq e1cmg4vm4">
+                                <div class="product-price discount-price css-1fttcpj ei5rudb2">
+                                    <!-- 죽은가격-->
+                                    <div><span class="dimmed-price css-18tpqqq ei5rudb2" style="text-decoration: line-through"  >
+                                        13,900<span class="won">원
+                                    </span></span></div>
+                                    <div class="discount"><span class="discount-rate css-19lkxd2 ei5rudb0">20%</span>
+                                        <span class="sales-price css-18tpqqq ei5rudb1">11,120<span class="won">원</span>
+                                        </span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/special/kafri.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" th:href="@{/join}"><i class="fa fa-eye text-primary"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--노란부분-->
+            <!--<div class="bg-primary text-light rounded-bottom p-5 my-6 mt-0 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 text-light mb-0">The Best Bakery In Your City</h1>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <div class="d-inline-flex align-items-center text-start">
+                            <i class="fa fa-phone-alt fa-4x flex-shrink-0"></i>
+                            <div class="ms-4">
+                                <p class="fs-5 fw-bold mb-0">Call Us</p>
+                                <p class="fs-1 fw-bold mb-0">+012 345 6789</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+        </div>
+    </div>
+    <!-- Product End -->
+
+
+    <!-- Product Start2 노란부분 합-->
+    <div class="container-xxl bg-light my-6 py-6 pt-0">
+        <div class="container">
+
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="text-primary text-uppercase mb-2">// 전전전 시리즈 특가! </p>
+                <h1 class="display-6 mb-4">특가 세일</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill px-3 mb-3">전통주</div>
+                            <h3 class="mb-3">감자전</h3>
+                            <span>쫀뜩쫀득 중독되는 감칠맛</span>
+                            <div class="content-row css-1066lcq e1cmg4vm4">
+                                <div class="product-price discount-price css-1fttcpj ei5rudb2">
+                                    <!-- 죽은가격-->
+                                    <div><span class="dimmed-price css-18tpqqq ei5rudb2" style="text-decoration: line-through"  >
+                                        7,500<span class="won">원
+                                    </span></span></div>
+                                    <div class="discount"><span class="discount-rate css-19lkxd2 ei5rudb0">20%</span>
+                                        <span class="sales-price css-18tpqqq ei5rudb1">6,000<span class="won">원</span>
+                                        </span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/special/photato1.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" th:href="@{/join}"><i class="fa fa-eye text-primary"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">전통주</div>
+                            <h3 class="mb-3">해물파전</h3>
+                            <span>비오는 날에는 해물파전 먹어줘야지~</span>
+                            <div class="content-row css-1066lcq e1cmg4vm4">
+                                <div class="product-price discount-price css-1fttcpj ei5rudb2">
+                                    <!-- 죽은가격-->
+                                    <div><span class="dimmed-price css-18tpqqq ei5rudb2" style="text-decoration: line-through"  >
+                                        17,950<span class="won">원
+                                    </span></span></div>
+                                    <div class="discount"><span class="discount-rate css-19lkxd2 ei5rudb0">20%</span>
+                                        <span class="sales-price css-18tpqqq ei5rudb1">14,340<span class="won">원</span>
+                                        </span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/special/pajun2.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" th:href="@{/join}"><i class="fa fa-eye text-primary"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">전통주</div>
+                            <h4 class="mb-3">김치전</h4>
+                            <span>바싹바싹함을 더 살렸다! new 김치전</span>
+                            <div class="content-row css-1066lcq e1cmg4vm4">
+                                <div class="product-price discount-price css-1fttcpj ei5rudb2">
+                                    <!-- 죽은가격-->
+                                    <div><span class="dimmed-price css-18tpqqq ei5rudb2" style="text-decoration: line-through"  >
+                                        15,600<span class="won">원
+                                    </span></span></div>
+                                    <div class="discount"><span class="discount-rate css-19lkxd2 ei5rudb0">14%</span>
+                                        <span class="sales-price css-18tpqqq ei5rudb1">13,410<span class="won">원</span>
+                                        </span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/special/kimch1.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" th:href="@{/join}"><i class="fa fa-eye text-primary"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          <!--  &lt;!&ndash;노란부분&ndash;&gt;
+            <div class="bg-primary text-light rounded-bottom p-5 my-6 mt-0 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 text-light mb-0">The Best Bakery In Your City</h1>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <div class="d-inline-flex align-items-center text-start">
+                            <i class="fa fa-phone-alt fa-4x flex-shrink-0"></i>
+                            <div class="ms-4">
+                                <p class="fs-5 fw-bold mb-0">Call Us</p>
+                                <p class="fs-1 fw-bold mb-0">+012 345 6789</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+        </div>
+    </div>
+    <!-- Product End2 -->
+
+
+
+
+    <!-- Team Start -->
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="text-primary text-uppercase mb-2">// 카테고리 쇼핑</p>
+                <h1 class="display-6 mb-4">술 종류별 쇼핑하기</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="img/catagory/beer1.jpg" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>맥주</h5>
+                             <!--   <span>Designation</span>-->
+                            </div>
+                            <div class="team-social">
+                                <!--<a class="btn btn-square btn-light rounded-circle" th:href="@{/join}"><i class="fab fa-facebook-f"></i></a>-->
+                                <!--<a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-twitter"></i></a>-->
+                                <!--<a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>-->
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="41" height="41" src="https://img.icons8.com/matisse/100/facebook-like.png" alt="facebook-like"/>
+                                </a>
+                                <a th:href="@{/join}">
+                                    <img width="48" height="48" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-discount-sales-flaticons-lineal-color-flat-icons-2.png" alt="external-discount-sales-flaticons-lineal-color-flat-icons-2"/>
+                                </a>
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="43" height="43" src="https://img.icons8.com/officel/80/new.png" alt="new"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="img/catagory/soju2.jpg" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>소주</h5>
+                                <!--   <span>Designation</span>-->
+                            </div>
+                            <div class="team-social">
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="41" height="41" src="https://img.icons8.com/matisse/100/facebook-like.png" alt="facebook-like"/>
+                                </a>
+                                <a th:href="@{/join}">
+                                    <img width="48" height="48" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-discount-sales-flaticons-lineal-color-flat-icons-2.png" alt="external-discount-sales-flaticons-lineal-color-flat-icons-2"/>
+                                </a>
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="43" height="43" src="https://img.icons8.com/officel/80/new.png" alt="new"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="img/catagory/wine1.jpg" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>와인</h5>
+                                <!--   <span>Designation</span>-->
+                            </div>
+                            <div class="team-social">
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="41" height="41" src="https://img.icons8.com/matisse/100/facebook-like.png" alt="facebook-like"/>
+                                </a>
+                                <a th:href="@{/join}">
+                                    <img width="48" height="48" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-discount-sales-flaticons-lineal-color-flat-icons-2.png" alt="external-discount-sales-flaticons-lineal-color-flat-icons-2"/>
+                                </a>
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="43" height="43" src="https://img.icons8.com/officel/80/new.png" alt="new"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="img/catagory/tra2.jpg" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>전통주</h5>
+                                <!--   <span>Designation</span>-->
+                            </div>
+                            <div class="team-social">
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="41" height="41" src="https://img.icons8.com/matisse/100/facebook-like.png" alt="facebook-like"/>
+                                </a>
+                                <a th:href="@{/join}">
+                                    <img width="48" height="48" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-discount-sales-flaticons-lineal-color-flat-icons-2.png" alt="external-discount-sales-flaticons-lineal-color-flat-icons-2"/>
+                                </a>
+                                <a class="btn btn-square btn-light rounded-circle" th:href="@{/join}">
+                                    <img width="43" height="43" src="https://img.icons8.com/officel/80/new.png" alt="new"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+
+
+    <!-- About Start -->
+    <!--
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="row img-twice position-relative h-100">
+                        <div class="col-6">
+                            <img class="img-fluid rounded" src="img/about-1.jpg" alt="">
+                        </div>
+                        <div class="col-6 align-self-end">
+                            <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="h-100">
+                        <p class="text-primary text-uppercase mb-2">// About Us</p>
+                        <h1 class="display-6 mb-4">We Bake Every Item From The Core Of Our Hearts</h1>
+                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <div class="row g-2 mb-4">
+                            <div class="col-sm-6">
+                                <i class="fa fa-check text-primary me-2"></i>Quality Products
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="fa fa-check text-primary me-2"></i>Custom Products
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="fa fa-check text-primary me-2"></i>Online Order
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="fa fa-check text-primary me-2"></i>Home Delivery
+                            </div>
+                        </div>
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- About End -->
+
+
+
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-6">
+
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="text-primary text-uppercase mb-2">// 예약서비스</p>
+                    <h1 class="display-6 mb-4">주류구매 예약서비스 오픈!</h1>
+                    <!--<p class="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
+                        Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
+                        sed stet lorem sit clita duo justo magna dolore erat amet</p>-->
+                    <p class="mb-5">
+                        술을 마시러 갔는데 내가 원하는 브랜드 술이 없다? 집에서 혼술하고 싶다?
+                        밖에서 사먹으면 술이 너무 비싸~! 전부 모이세요.
+                        주당들의 천국이 주류구매 서비스를 오픈합니다.
+                        여기서 주문하고 가까운 편의점에서 픽업하세요!
+                        <br>
+                    <span style="color:#EAA636">본 서비스는 성인인증이 필요합니다.</span>
+                    </p>
+                    <div class="row gy-5 gx-4">
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-bread-slice text-white"></i>
+                                </div>
+                                <a th:href="@{/join}"><h5 class="mb-0">성인인증 하러가기</h5></a>
+                            </div>
+                            <span>성인만 이용가능한 서비스입니다. 픽업시에도 신분증 필수입니다.</span>
+                        </div>
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-birthday-cake text-white"></i>
+                                </div>
+                                <a th:href="@{/join}"><h5 class="mb-0">생일축하 이벤트</h5></a>
+                            </div>
+                            <span>생일 전후 3일 내로 주문하시면 선물을 드립니다.</span>
+                        </div>
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-cart-plus text-white"></i>
+                                </div>
+                                <a th:href="@{/join}"><h5 class="mb-0">주류 쇼핑하기</h5></a>
+                            </div>
+                            <span>와인, 소주 등 종류별로 판매합니다. 수입류도 판매예정입니다.</span>
+                        </div>
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-truck text-white"></i>
+                                </div>
+                                <a th:href="@{/join}"><h5 class="mb-0">주변 편의점 찾기</h5></a>
+                            </div>
+                            <span>일부 GS25, CU편의점 매장에서 픽업 가능합니다.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="row img-twice position-relative h-100">
+                        <div class="col-6">
+                            <img class="img-fluid rounded" src="img/reservation/reser5.jpg" alt="">
+                        </div>
+                        <div class="col-6 align-self-end">
+                            <img class="img-fluid rounded" src="img/reservation/reser4.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+
+
+    <!-- Testimonial Start 리뷰 영역-->
+    <div class="container-xxl bg-light my-6 py-6 pb-0" style="padding-bottom: 6rem">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="text-primary text-uppercase mb-2">// 고객님, 리뷰써주세요~</p>
+                <h1 class="display-6 mb-4">
+                    리뷰 누적 2만 건 돌파!!
+                    <br>감사합니다.<br>
+                    더 좋은 서비스로 보답하겠습니다.</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <a th:href="@{/join}">
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/review/r1.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">김루피</h5>
+                            <span>카프리제</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">다이어트하시는 분들 이거 드세요 ㅋㅋㅋ 칼로리 걱정없고 진짜 맛있어요
+                    와인마실 때 곁들여먹으면 천국에 있는거 같아요 </p>
+                </div></a>
+                <a th:href="@{/join}">
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/review/r2.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">루피는귀염둥이</h5>
+                            <span>해물파전</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">해산물 극혐하는 사람도 먹을 수 있어요!! 추천합니다. 또 주문합니다 이번엔 많이 쟁여두려구요</p>
+                </div></a>
+                <a th:href="@{/join}">
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/review/r3.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">오마진나야</h5>
+                            <span>카프리제꼬치</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">카프리제 꼬치? 처음들어보고 궁금해서 사봤는데 맛있네요. 구워주니 아이들도 잘 먹어요^^</p>
+                </div></a>
+                <a th:href="@{/join}">
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/review/r4.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">오송히</h5>
+                            <span>미니감자전</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">제 인생 감자전이에요! 정말 맛있습니다. 쫀득한 식감에 적당히 달달하고 최고에요</p>
+                </div></a>
+            </div>
+           <!-- <div class="bg-primary text-light rounded-top p-5 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h1 class="display-4 text-light mb-0">Subscribe Our Newsletter</h1>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="position-relative">
+                            <input class="form-control bg-transparent border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                            <button type="button" class="btn btn-dark py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+    <!-- Footer Start -->
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+<!--</body>-->
+</div>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+
+
+    <link rel="stylesheet" href="css/fmain_ing.css">
+    <!--<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fmain_ing.css">-->
+
+    <div class="container">
+        <div class="bar">
+            <span>진행 중인 펀딩</span>
+            <div class="top-bar">
+                <div>
+                    <select class="selectBox"
+                            onchange="if(this.value) location.href=(this.value);">
+                        <option value="">전체</option>
+                        <option value="fmain_ing">진행중</option>
+                        <option value="fmain_fin">종료된</option>
+                        <option value="fmain_soon">오픈예정</option>
+                    </select>
+                </div>
+                <ul>
+                    <li><a href="#">최신순</a></li>
+                    <li><a href="#">인기순</a></li>
+                    <li><a href="#">추천순</a></li>
+                    <li><a href="#">마감임박순</a></li>
+                    <li><a href="#">모집금액순</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="funding-movie">
+            <!-- 펀딩 리스트 반복 시작 -->
+        <!--    <div th:each="e : ${boardList}" class="movie">-->
+               <!-- <a th:href="@{'fboardDetail?funnum=' + ${e.funnum}}">-->
+            <img th:src="@{img/product/tradi.jpg}" alt="Image 1">
+             <!--   </a>-->
+                <!-- 영화 제목${e.funtitle} -->
+                <div class="caption" th:text="제목자리"></div>
+                <!-- 영화 content 미리보기 ${e.funpreview}-->
+                <p class="ff" th:text="프리뷰자리"></p>
+                <!-- 진행바 위 text -->
+                <div class="text-style">
+                    <div class="inner-text-style">
+                        <span><strong>50%</strong></span> <span>215,456,000원</span>
+                    </div>
+                    <div class="d-day">
+                        <span>10</span><span>일 남음</span>
+                    </div>
+                </div>
+                <!-- 진행바 위 text end -->
+                <!-- 프로세스 바 -->
+                <div class="progress-bar">
+                    <div class="progress-bar-inner" th:style="'width: ' + ${50} + '%;'"></div>
+                </div>
+            </div>
+
+            <!-- 펀딩 리스트 반복 끝 -->
+        </div>
+        <!-- 페이징 처리 영역 -->
+        <div>
+            <!--<%@include file="../temp/pageProcess.jsp"%>-->
+
+        </div>
+        <!--<%&#45;&#45; 검색영역 &#45;&#45;%>-->
+        <div>
+            <div class="f_search">
+               <!-- <%&#45;&#45; 기존의 리스트 모델로 요청을 보낸다. &#45;&#45;%>-->
+                <form class="d-flex" method="post" action="fboardList">
+                    <select class="form-control btn-mini" name="searchType"
+                            id="searchType" style="text-align: center; width: 80px;">
+                        <option value="">검색</option>
+                        <option value="1">제목</option>
+                        <option value="2">내용</option>
+                    </select> <input class="form-control me-2" type="text" placeholder="Search.."
+                                     name="searchValue" id="searchValue" style="width: 200px">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </form>
+            </div>
+            <!-- n_search 끝 -->
+            <button type="button" class="btn btn-outline-secondary"
+                    onclick="location='fupform'">글작성</button>
+        </div>
+    </div>
+
+</div>
+</html>

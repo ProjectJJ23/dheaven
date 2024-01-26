@@ -1,0 +1,80 @@
+@charset "EUC-KR";
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+h2{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+h3{font-family: 'NanumSquareNeo-Variable';}
+h4{font-family: 'NanumSquareNeo-Variable';}
+h5{font-family: 'NanumSquareNeo-Variable';}
+h6{font-family: 'NanumSquareNeo-Variable';}
+p{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+span{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+div{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+dl{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+b{font-family: 'NanumSquareNeo-Variable';}
+button{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+
+
+/*id&pwd찾기 Bar css*/
+.account-find .page-header h2 {font-weight: bold; padding:30px; margin:0 350px; margin-bottom: 50px;}
+.account-find .page-header .nav_tab {border-bottom: 1px solid #cacaca;}
+.account-find .page-header .nav_tab ul {display: flex; padding-left:40px; padding-right:40px; margin-left: 450px; margin-right: 450px;}
+.account-find .page-header .nav_tab a{color: #cacaca; margin: 0 auto;}
+.account-find .page-body .floor {display:none;}
+
+/*아이디 찾기 css*/
+.account-find .page-body .floor .container .find_id span {text-align: left; color: #8e8e8e; font-size: 14px;}
+.account-find .page-body .floor .container .find_id {text-align: left;}
+.account-find .page-body {background-color:#f5f7fa;}
+.account-find .page-header .nav_tab a {display: block;}
+.account-find .page-header .nav_tab a.active{color: #00c4c4; height: 47px;}
+.account-find .page-header .nav_tab li {height: 47px; border-bottom: 2px solid #00c4c4;}
+.account-find .page-header .nav_tab li.active {border-bottom: 2px solid #00c4c4;}
+.account-find .page-header .nav_tab li:first-child { margin-right: 30px;}
+/*.account-find .page-header .nav_tab li:nth-child(2){height: 47px;}*/ 
+.account-find .page-body .floor:first-child .container {height:100vh; text-align: center; padding-top: 50px; margin: 0 auto; max-width: 400px;}
+.account-find .page-body .floor:first-child .container .find_id_input {margin-top: 30px;}
+.account-find .page-body .floor:first-child .container .submit {margin-top: 15px;}
+.account-find .page-body .floor:first-child .find_id_input input {border: 1px solid #cacaca; border-radius: 3px; width: 100%; height: 40px; text-indent: 10px; }
+
+/*등록된 번호가 있을 경우 넘어가는 페이지 css*/
+.account-find .page-body .floor .id-notification {display:none; height:100vh; text-align: center; margin: 0 auto; max-width: 400px;}
+.account-find .page-body .floor .id-notification span {text-align: left; color:#8e8e8e; font-size: 14px;}
+.account-find .page-body .floor .id-notification .submit2 input {margin-top: 20px;}
+
+
+
+/*버튼 css*/
+.button {
+	
+	height: 50px;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	color: #fff;
+	background-color: #a8e2ff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	outline: none;
+	width: 100%;
+	}
+
+	.button2 {
+	
+	height: 50px;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	color: #8e8e8e;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 5px;
+	cursor: pointer;
+	outline: none;
+	width: 100%;
+	}
+	

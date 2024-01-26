@@ -1,0 +1,126 @@
+@charset "utf-8";
+
+h2{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+h3{font-family: 'NanumSquareNeo-Variable';}
+h4{font-family: 'NanumSquareNeo-Variable';}
+h5{font-family: 'NanumSquareNeo-Variable';}
+h6{font-family: 'NanumSquareNeo-Variable';}
+p{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+span{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+div{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+dl{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+b{font-family: 'NanumSquareNeo-Variable';}
+button{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+
+
+.swiper {
+      width: 50%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      object-fit: cover;
+    }
+.swiper-button-next:after,.swiper-rtl .swiper-button-prev:after {color:#00c4c4;}
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {color:#00c4c4;}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {bottom:-5px;}
+.swiper-pagination-bullet {background:#00c4c4}
+
+#contents {margin:50px 0;}
+#contents .main-banner .moviePoster{text-align:center;}
+#contents .main-banner .left-content .row .col-lg-12 h2 {font-weight:bold;font-size:25px;padding:0 10px;}
+#contents .main-banner .left-content .row .col-lg-12 p {font-size:13px;padding:0 10px;}
+#contents .main-banner .left-content .row .col-lg-12 .fundingMovie_type {display:flex;align-items: flex-end;margin-bottom: 15px;}
+#contents .main-banner .left-content .row .col-lg-12 .fundingMovie_type p:first-child {margin:0;}
+#contents .main-banner .left-content .row .col-lg-12 .fundingMovie_type p:last-child {margin:0;color:#00c4c4;}
+#contents .main-banner .left-content .row .col-lg-12 .fundingMovie_type .material-symbols-outlined {font-size:19px;color:gray;font-weight:lighter;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status {display:grid;gap:5px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_1st {display:flex;gap:10px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_1st div {display:flex;align-items: baseline;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_1st h4{font-size: 20px;font-weight: bold;color: #00c4c4;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_1st h5{font-size: 16px;color: #00c4c4;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_1st span{background: var(--mint-m-100, #E7F9F9);border-radius: 5px;height: 25px;padding: 5px;font-size: 11px;color: #00c4c4;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_2ed {display:flex;gap:10px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_2ed div {display:flex;align-items: baseline;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_2ed h4{font-size: 20px;font-weight: bold;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_2ed h5{font-size: 16px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_status .funding_status_2ed span{background-color: #eee;border-radius: 5px;height: 25px;padding: 5px;font-size: 11px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo {margin:10px 0;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo p{padding:0}
+.funding_all {background-color: #effbfb;padding: 15px 0 10px 15px; border-radius: 7px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo p:after{display: inline-block;margin: 0 8px;background-color: #c6c6c6;width: 1px;height: 12px;content: "";}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailAim{display: flex;align-items: baseline;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailAim p{margin:0;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailAim span {font-size:13px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailPeriod{display: flex;align-items: baseline;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailPeriod p{margin:0;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailPeriod span {font-size:13px;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailPay{display: flex;align-items: baseline;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailPay p{margin:0;}
+#contents .main-banner .left-content .row .col-lg-12 .funding_detailInfo .funding_detailPay span {font-size:13px;}
+
+.gotoFunding #fundingAmountSelect {outline:0;cursor:pointer;width: -webkit-fill-available;height: 50px;border: 1px solid #dde2e6;border-radius: 6px;margin: 10px 0;padding: 0 10px;}
+.gotoFunding #funmoney {cursor:pointer;width: -webkit-fill-available;display: none;border: 1px solid #dde2e6;height: 50px; border-radius: 6px;outline: 0;padding: 0 10px;margin-bottom:10px;}
+.gotoFunding .funding_Btnetc {display:flex;align-items: center;gap:20px}
+.gotoFunding .funding_Btnetc button{outline: 0;border: none;width: 380px;height: 55px;background-color: #00c4c4;color: #fff;border-radius: 5px;cursor: pointer;}
+.gotoFunding .funding_Btnetc .likeShareBtn {display:flex;gap:15px;}
+.gotoFunding .funding_Btnetc .likeShareBtn .like-btn{text-align: center;border: 1px solid #dde2e6;padding: 2px;border-radius: 5px;cursor: pointer;width: 65px;}
+.gotoFunding .funding_Btnetc .likeShareBtn .like-btn:hover{color:red;}
+.gotoFunding .funding_Btnetc .likeShareBtn .share-btn:hover{color:#00c4c4;}
+.gotoFunding .funding_Btnetc .likeShareBtn .share-btn{text-align: center;border: 1px solid #dde2e6;padding: 2px;border-radius: 5px;cursor: pointer;width: 65px;}
+
+/*영화 본문시작*/
+.container .row .col-12 .single-blog-area {margin:20px 0 40px 0;padding:0 10px;}
+.container .row .col-12 .blog-post-author {padding:40px 10px;gap:20px;margin:0px;}
+/*감독*/
+.container .row .col-12 .blog-post-author .director_img img {width:300px;height:150px;border-radius:50%;}
+.container .row .col-12 .blog-post-author .author-info p{color:black;font-family:'NanumSquareNeo-Variable';}
+/*배우*/
+.container .row .col-12 .single-blog-area .single-blog-content .actor-profile img {width:200px;}
+.container .row .col-12 .single-blog-area .single-blog-content .actor-profile {display: flex;justify-content: space-between;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

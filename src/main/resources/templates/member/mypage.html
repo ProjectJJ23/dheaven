@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/sublayout}">
+<div layout:fragment="content" class="contentWrapper">
+    <div class="container">
+        <div class="profile">
+            <div class="profile-box">
+                <div>
+                    <div class="profile-img">
+                        <img src="img/team-1.jpg" alt="회원사진">
+                    </div>
+                </div>
+                <div class="profile_info">
+                    <div class="profile_userName">
+                        <span>닉네임자리</span><b style="margin-left: 7px;">님</b>
+                    </div>
+                    <span style="font-size: 12px; color: rgba(128,128,128,0.96); margin-top: 10px;">이메일자리</span>
+                </div>
+                <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB" style="margin: 12px 18px; height: 1px;">
+                <div class="login_method" style="font-size: 12px;">
+                    <img src="img/myInfo/img.png" style="width: 15px;">
+                    <span>네이버로 로그인 중</span>
+                </div>
+                <div class="logout">
+                    <a href="logout">
+                        <button type="button" class="button">
+                            <span>로그아웃</span>
+                        </button>
+                    </a>
+                </div>
+            </div><!-- profile-box -->
+        </div><!-- profile -->
+        <div class="contents">
+            <div>
+                <h5>마이페이지</h5>
+                <div class="content_list">
+                    <div class="content_list_item">
+                        <dl>
+                            <dt>
+                                <i class="fa-regular fa-envelope"></i> <span>이메일</span>
+                            </dt>
+                            <dd>
+                                <span>이메일자리</span>
+                            </dd>
+                        </dl>
+                        <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                        <dl>
+                            <dt>
+                                <i class="fa-solid fa-user"></i> <span>이름</span>
+                            </dt>
+                            <dd>
+                                <span>이름자리</span>
+                            </dd>
+                        </dl>
+                        <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                        <dl id="nicknameInput">
+                            <dt>
+                                <i class="fa-regular fa-user"></i> <span>닉네임</span>
+                            </dt>
+                            <dd>닉네임자리</dd>
+                        </dl>
+                        <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                        <dl>
+                            <dt>
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <span>전화번호</span>
+                            </dt>
+                            <dd>전번자리</dd>
+                        </dl>
+                        <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                        <dl>
+                            <dt>
+                                <i class="fa-solid fa-venus-mars"></i>
+                                <span>성별</span>
+                            </dt>
+                            <dd>성별자리</dd>
+                        </dl>
+                        <hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                        <dl>
+                            <dt>
+                                <i class="fa-solid fa-cake-candles"></i> <span>생년월일</span>
+                            </dt>
+                            <dd>생년월일자리</dd>
+                        </dl>
+                        <hr  class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__3h-EB">
+                        <dl>
+                            <dt>
+                                <i class="fa-solid fa-right-to-bracket"></i> <span>가입일</span>
+                            </dt>
+                            <dd>
+                                <span>가입일자리</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <!-- content_list -->
+                </div>
+            </div>
+            <div class="eventBanner-start">
+                <div class="eventBanner">
+                    <a href="#">
+                        <div class="bannerInner">
+                            <div class="banner-content">
+                                <div class="banner-text">
+                                    <img src="img/myInfo/business-funding.jpg" alt="이미지">
+                                    <div>
+                                        <p>LAURA 광고센터에서</p>
+                                        <b>펀딩 홍보를 시작해보세요</b>
+                                    </div>
+                                </div><!-- banner-text -->
+                            </div><!-- banner-content -->
+                        </div><!-- bannerInner -->
+                    </a>
+                </div><!-- eventBanner -->
+            </div><!-- eventBanner-start -->
+            <div class="Myinfo_list">
+                <h4>내 정보</h4>
+                <div>
+                    <ul>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">person</span>
+                                <span>내 정보 확인 · 수정</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div></a>
+                        </li>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">lock</span>
+                                <span>비밀번호 설정</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div></a>
+                       </li>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">delete</span>
+                                <span>회원탈퇴</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div></a>
+                        </li>
+                        <li><a href="#">
+                            <div>
+                                <!-- icon -->
+                                <span class="material-icons material-symbols-outlined">person</span>
+                                <span>인증 정보</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="Myinfo_list">
+                <h4>펀딩 · 투표 내역</h4>
+                <div>
+                    <ul>
+                        <li><a href="funpartiList?fmem_num=">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">groups</span>
+                                <span>내 펀딩 내역</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div>
+                        </a></li>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">how_to_vote</span>
+                                <span>내 투표 내역</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="Myinfo_list">
+                <h4>내 활동</h4>
+                <div>
+                    <ul>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">edit_calendar</span>
+                                <span>내가 쓴 글</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div>
+                        </a></li>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">chat</span>
+                                <span>내가 쓴 댓글</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next" >navigate_next</span>
+                            </div>
+                        </a></li>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">favorite</span>
+                                <span>찜하기</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div>
+                        </a></li>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">shopping_cart</span>
+                                <span>스토어 구매내역</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="Myinfo_list">
+                <h4>고객센터</h4>
+                <div>
+                    <ul>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">support_agent</span>
+                                <span>판매자 1:1 채팅 상담</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next" >navigate_next</span>
+                            </div>
+                        </a></li>
+                        <li><a href="#">
+                            <div>
+                                <span class="material-icons material-symbols-outlined">smart_toy</span>
+                                <span>챗봇연결</span>
+                                <span class="material-icons material-symbols-outlined material-icons-navigate_next">navigate_next</span>
+                            </div>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Myinfo_list -->
+        </div>
+        <!-- contents -->
+    </div>
+    <!-- container -->
+
+    <script>
+        <!-- 버튼 클릭 시 글씨 색 변경 기능 -->
+        //모든 링크와 해당 li 요소들을 가져옵니다.
+        const tabLinks = document.querySelectorAll('.Myinfo_list ul li a');
+
+
+        //링크를 클릭할 때 실행될 함수
+        tabLinks.forEach((link, index) => {
+            link.addEventListener('click', function(event) {
+                // 모든 li 요소의 border-bottom 스타일을 초기화합니다.
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                link.classList.add('active');
+            });
+        });
+    </script>
+</div>
+<!-- contentWrapper -->
+
+
+
+</html>

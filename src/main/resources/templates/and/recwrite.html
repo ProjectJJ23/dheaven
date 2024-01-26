@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/layout}">
+<!--Container Main start-->
+<div layout:fragment="content">
+	<script type="text/javascript">
+		function openPop(n){
+			localStorage.setItem("num", n);
+		    var popup = window.open('http://localhost/email_join/map', '팝업', 'width=1200px,height=560px,scrollbars=no,top=200px,left=-1550px');
+		}
+	</script>
+	<div class="content-con recwrite1">
+		<form method="post" action="addDiaryRec" autocomplete="off" enctype="multipart/form-data" id="addRecForm">
+			<div style="text-align: right;">
+				<span style="margin-right: 30px;">공개 : <input type="radio" value="1" name="dia_public"></span>
+				<span>비공개 : <input type="radio" value="0" name="dia_public" checked></span>
+			</div>
+			<div class="diarylist-subtxt2 mb30">
+	            <h1><span>기억</span>을 <span>기록</span>하세요.</h1>
+	            <p>Record your memories.</p> 
+	            <h1>[[${session.sessionNick}]]</h1>
+	        </div>
+			<input type="hidden" id="dia_nick" name="dia_nick" th:value="${session.sessionNick}">
+			<div class="recode">
+				<div class="recwrite_top">
+					<div class="tit-txt">
+						<h2 class="hea-txt2">여행제목</h2>
+						<input id="dia_sub" type="text" class="diatop1 mb30" name="dia_sub" placeholder="여행 제목을 적어주세요" value="친구랑 속초여행" required><br>
+						<h3 class="hea-txt3">한줄평</h3>
+						<input id="dia_summ" type="text" class="diatop2" name="dia_summ" placeholder="여행에 대한 한줄평을 적어주세요" value="비왔지만 좋았다." required>
+						<!-- 캘린더 영역 -->	
+						<h3 class="hea-txt3">일정</h3>
+						<div class="calender">
+					        <input type="hidden" name="startDate" id="startDateInput">
+					        <input type="hidden" name="endDate" id="endDateInput">
+					    </div>
+					</div>
+					<div class="mfile">
+						<div class="sum-imgupbtn mb20">
+							<label for="mfile">썸네일 사진</label>
+							<input type="file" id="mfile" name="mfile">
+						</div>
+						<div class="sum-img">
+							<img src="img/noimage.jpg" id="imgx">
+						</div>
+					</div>
+				</div>
+	       		
+	       		<!-- 다이어리 해시태그 DIA_HASHTAG -->
+				<div class="hash-list">
+					<ul>
+		        		<li>
+		        			<label for="rec_hash_tag1" class="hash-txt">해시태그1</label>
+		        			<input id="rec_hash_tag1" class="rec_hash_tag_titWrite" name="rec_hash_tag" type="text" placeholder="'#'없이 해시태그 입력" value="해시태그1" required>
+		        		</li>
+		        		<li>
+		        			<label for="rec_hash_tag2" class="hash-txt">해시태그2</label>
+		        			<input id="rec_hash_tag2" class="rec_hash_tag_titWrite" name="rec_hash_tag" type="text" placeholder="'#'없이 해시태그 입력" value="해시태그2" required>
+		        		</li>
+		        		<li>
+		        			<label for="rec_hash_tag3" class="hash-txt">해시태그3</label>
+		        			<input id="rec_hash_tag3" class="rec_hash_tag_titWrite" name="rec_hash_tag" type="text" placeholder="'#'없이 해시태그 입력" value="해시태그3" required>
+		        		</li>
+		        		<li>
+		        			<label for="rec_hash_tag4" class="hash-txt">해시태그4</label>
+		        			<input id="rec_hash_tag4" class="rec_hash_tag_titWrite" name="rec_hash_tag" type="text" placeholder="'#'없이 해시태그 입력" value="해시태그4" required>
+		        		</li>
+		        	</ul>
+				</div>
+			</div>
+
+			<div id="targetRes">
+				<!-- 일차 추가 될 부분 -->
+			</div>
+			<div>
+				<input type="button" class="ndayAddBtn" onclick="mainsumBtn(2)" value="일차추가" style="margin-top: 10px;">
+			</div>
+		    <div class="rec_btns">
+			    <button type="button" onclick="location='../diaryplan/plandiaryList'">리스트</button>
+			    <button type="submit">등록</button>
+		    </div>
+		</form>
+<script>
+	//var subCnt = 1;
+	var cnt = 1; // 일정 num
+	var rec_sc_nday = 0; // 스케줄 num
+	var addrcnt = 1;
+	
+	var rec_nday_nday = 1;  // 일차 num
+	
+	// 접속 시 바로 실행되는 함수
+	$(function start() {
+		mainsumBtn(1);
+	});
+	
+	// 일차 추가 함수
+	function mainsumBtn(n){
+		// 시작날짜와 마지막날짜 값 저장
+		var startDateStr = document.getElementById("startDateInput").value;
+     	var endDateStr = document.getElementById("endDateInput").value;
+        // Date 객체로 변환
+        var startDate = new Date(startDateStr);
+        var endDate = new Date(endDateStr);
+        // 두 날짜 간의 차이를 계산
+        var timeDiff = endDate - startDate;
+        // 밀리초를 일 단위로 변환
+        var daysDiff = timeDiff / (1000 * 60 * 60 * 24)+1;
+        
+        if(cnt > daysDiff){
+        	// 입력된 기간 넘게 일차를 추가할 때
+        	alert("여행일자보다 길게 일차를 추가 할 수 없습니다.")
+        }else{
+        	// 입력된 기간에 알맞게 일차를 추가할 때
+			var mainTarget = `
+				<!-- 일차 전체 영역 -->
+				<div class="section_container">
+					<!-- `+rec_nday_nday+`일차 영역 시작 -->
+					<div class="recwrite_nday" id="target`+cnt+`">
+						<div class="sec1" style="text-align: left;">
+							<h2>
+								<input class="inputnoboard" id="nday`+cnt+`" style="width: 20px; font-size: 25px;" name="rec_nday_nday" value="`+cnt+`" readonly="readonly">일차
+							</h2>
+						</div> 
+						<!-- 사진 -->
+						<div class="rec-sec">
+							<h3 class="tit"><span>사진</span></h3> 
+							<!--<input type="hidden" name="rec_photo_nday" value=`+rec_nday_nday+`> -->
+							<input type="file" id="recimgfile`+cnt+`" name="recimgfile" multiple onclick="imageInput(`+cnt+`)" style="margin-top: 10px;" required>
+							<div id="preview-container`+cnt+`" class="preview-container">
+							<!-- 사진 추가될 부분 -->
+							</div>
+						</div>				
+						<!-- 일정 추가될 부분 -->
+						<div id="target`+cnt+`"></div>
+					</div>
+					<div style="margin: 10px 0; text-align: center; "> <input type="button" class = "scAddBtn" onclick="sumBtn(`+cnt+`)" value="일정추가"> </div>
+					<hr>
+					<!--<button type="button" onclick="delNday(this)">XX</button>-->
+				</div>
+				 `;
+			if(n === 1){
+				$('#targetRes').append(mainTarget);
+			}else{
+		        $('#targetRes').append(mainTarget);
+			}
+			cnt++;
+			rec_nday_nday++;
+			rec_sc_nday++;
+		}
+	}
+	
+	// 일정 추가 함수
+	function sumBtn(tcnt){
+		var subTarget =`
+			<div id="target">
+				<!-- 일정 -->
+				<div class="rec-sec">
+					<h3 class="tit">
+						<span>일정</span>
+					</h3>		
+					<div class="rec_scTopDiv">
+						<input type="hidden" name="rec_sc_nday" value=`+tcnt+`>
+						<input type="text" id="rec_sc_tit`+addrcnt+`" class="rec_sc_tit" name="rec_sc_loca" placeholder="일정명 입력" value="일정" required>
+						<input type="time" id="rec_sc_time`+addrcnt+`" class="rec_sc_time" name="rec_sc_time" required>
+						<input type="text" id="rec_sc_addr`+addrcnt+`" class="rec_sc_addr" name="rec_sc_addr" id="keyword" size="15" placeholder="주소입력" readonly="readonly" required>
+						<input type="button" class="rec_sc_addr_btn" value="주소검색" style="width: 94px;" onclick="openPop(`+addrcnt+`)">
+						<select id="rec_sc_type`+addrcnt+`" name="rec_sc_type" class="rec_sc_select" required>
+							<option>경비종류선택</option>
+							<option value="교통비">교통비</option>
+							<option value="숙박비">숙박비</option>
+							<option value="식비">식비</option>
+							<option value="관광비">관광비</option>
+							<option value="기타">기타</option>
+						</select>
+						<input class="rec_sc_cost" id="rec_sc_cost" type="text" name="rec_sc_cost" placeholder="경비금액 입력" value="1000" required>
+					</div>
+					<br>
+					<textarea style='width: 100%; height: 100px; padding: 10px;' name='rec_sc_memo' id='rec_sc_memo`+addrcnt+`' placeholder='일정에 대한 Tip!' required>tip</textarea> 	
+					<div class="delScBtn">
+						<button type="button" onclick="delSc(this)">X</button>
+					</div>
+				</div>
+			</div> `;
+		$('#target'+tcnt).append(subTarget);
+		addrcnt++;
+		//subCnt++;
+	}
+	
+	// 일정 삭제 함수
+    function delSc(button) {
+    	var sc = button.parentElement.parentElement;
+        sc.remove();
+    }
+
+	// 일차 삭제 함수
+    function delNday(button) {
+    	var nday = button.parentElement;
+        nday.remove();
+        rec_nday_nday--;
+    }
+
+	// 새로운 파일 입력 엘리먼트에 이벤트 리스너 추가
+	function imageInput(containerId) {
+	    $('#recimgfile' + containerId).one('change', function (event) {
+	        handleImageUpload(event, containerId);
+	    });
+	}
+	
+	// handleImageUpload 함수 수정
+	function handleImageUpload(event, containerId) {
+	    const files = event.target.files;
+	    const previewContainer = document.getElementById("preview-container" + containerId);
+	    console.log(files, 'event.target.files');
+
+	    // 이전 미리보기 이미지 제거
+	    previewContainer.innerHTML = "";
+
+	    // 선택한 이미지들에 대한 미리보기 생성
+	    for (let i = 0; i < files.length; i++) {
+	        const file = files[i];
+	        const reader = new FileReader();
+	        reader.onload = function (event) {
+	            const imageDiv = document.createElement("div");
+	            const imageUrl = event.target.result;
+
+	            const previewImage = document.createElement("img");
+	            previewImage.setAttribute("src", imageUrl);
+	            previewImage.setAttribute("class", "preview-image");
+	            imageDiv.appendChild(previewImage);
+
+	            // 삭제 버튼 추가
+	            const deleteButton = document.createElement("button");
+	            deleteButton.setAttribute("class", "delete-button");
+	            deleteButton.textContent = "삭제";
+	            deleteButton.style.transform = "translateY(-100%)";
+	            deleteButton.addEventListener("click", function () {
+	                // 해당 이미지와 숨겨진 입력 요소를 미리보기에서 제거
+	                imageDiv.remove();
+	            });
+	            imageDiv.appendChild(deleteButton);
+
+	            // 숨겨진 입력 요소 추가
+	            const imgHidden = document.createElement("input");
+	            imgHidden.setAttribute("type", "hidden");
+	            imgHidden.setAttribute("name", "rec_photo_nday");
+	            imgHidden.setAttribute("value", containerId);
+	            imageDiv.appendChild(imgHidden);
+
+	            previewContainer.appendChild(imageDiv);
+	        };
+	        reader.readAsDataURL(file);
+	    }
+	}
+</script>	
+	<script>
+	  	// 이미지 미리보기 함수 => javascript I/O기능을 활용
+	  	function readURL(input) {
+		// input type = "file"의 주소를 가져온다.
+		if(input.files && input.files[0]){
+			// 자바스크립트 I/O
+			var reader = new FileReader();
+			// 리스너
+			reader.onload = function(e) {
+				//console.log("이벤트 발생: "+e.target.result); [이미지 제대로 나온거 보고 주석처리함]
+				// <img src> 선택자, attr("속성명", "값") => <img src="">
+				$('#imgx').attr('src', e.target.result); // 이미지를 바이너리로 전달
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	  	// jQuery 문법 - 축약형 [이 문법형식을 많이 사용함!!!]
+	  	$(function () {
+		// JQuery 선택자
+		// 대상선택자에서 변화를 감지하는 이벤트 : change()
+		// #mfile : 파일업로드 속성을 선택자
+		// $('선택자')
+		$('#mfile').change(function() {
+			// .val() : input type의 value 속성의 값
+			//console.log($(this).val()); [해당 이미지명이 제대로 출력된거 보고 주석처리함]
+			if($(this).val().length>0){
+				readURL(this);
+			}else{
+				console.log("이미지없음");
+			}
+		})
+	})
+	//사진 등록 안했을 때 경고 띄우기
+document.getElementById("addRecForm").addEventListener("submit", function (event) {
+    const mfileInput = document.getElementById("mfile");
+    // 선택한 파일이 없는 경우
+    let noFilesSelected = false;
+    if (mfileInput.files.length === 0) {
+        noFilesSelected = true;
+        msg = "썸네일 추가해주세요"
+    }
+    if (noFilesSelected) {
+	    event.preventDefault(); // 제출을 중단합니다.
+	    // 사용자에게 경고 메시지를 표시합니다.
+	    alert(msg);
+    }	
+})
+	/*
+	
+    // 이미지 파일 입력 상자를 가져옵니다.
+	const dia_subInputs = document.getElementById("dia_sub");
+    const dia_summInput = document.getElementById("dia_summ");
+    const startDateInput = document.getElementById("startDateInput");
+    const endDateInput = document.getElementById("endDateInput");
+    const rec_hash_tagInputs = document.querySelectorAll('[id^="rec_hash_tag"]');
+    const recimgfileInputs = document.querySelectorAll('[id^="recimgfile"]');
+    const rec_sc_titInputs = document.querySelectorAll('[id^="rec_sc_tit"]');
+    const rec_sc_timeInputs = document.querySelectorAll('[id^="rec_sc_time"]');
+    const rec_sc_addrInputs = document.querySelectorAll('[id^="rec_sc_addr"]');
+    const rec_sc_typeInputs = document.querySelectorAll('[id^="rec_sc_type"]');
+    const rec_sc_costInputs = document.querySelectorAll('[id^="rec_sc_cost"]');
+    let noContent = false;
+    
+	var msg = null;
+    if (mfileInput.files.length === 0) {
+        noFilesSelected = true;
+        msg = "썸네일 추가해주세요"
+    } else {
+        recimgfileInputs.forEach(input => {
+            if (input.files.length === 0) {
+                noFilesSelected = true;
+        		msg = "일차 내 사진 추가해주세요"
+            }
+        });
+    }
+    if (dia_subInputs.value.trim() === "") {
+        noContent = true;
+        	msg ="여행제목 작성해주세요";
+    }
+    if (dia_summInput.value.trim() === "") {
+        noContent = true;
+        	msg ="여행한줄평 작성해주세요";
+    }
+    if (startDateInput.value.trim() === "") {
+        noContent = true;
+        	msg ="여행날짜를 입력해주세요";
+    }
+	
+    rec_hash_tagInputs.forEach(input => {
+        if (input.value.trim() === "") {
+            noContent = true;
+        	msg ="해시태그를 작성해주세요";
+        }
+    });
+
+    rec_sc_titInputs.forEach(input => {
+        if (input.value.trim() === "") {
+            noContent = true;
+        	msg ="일정명을 작성해주세요";
+        }
+    });
+
+    rec_sc_timeInputs.forEach(input => {
+        if (input.value.trim() === "") {
+            noContent = true;
+        	msg ="일정시간을 작성해주세요";
+        }
+    });
+
+    rec_sc_addrInputs.forEach(input => {
+        if (input.value.trim() === "") {
+            noContent = true;
+        	msg ="일정 주소를 작성해주세요";
+        }
+    });
+
+    rec_sc_typeInputs.forEach(input => {
+        if (input.value.trim() === "경비종류선택") {
+            noContent = true;
+        	msg ="여행경비 타입을 작성해주세요";
+        }
+    });
+
+    rec_sc_costInputs.forEach(input => {
+        if (input.value.trim() === "") {
+            noContent = true;
+        	msg ="여행경비를 작성해주세요";
+        }
+    });
+    	
+
+    if (noContent) {
+        event.preventDefault(); // 제출을 중단합니다.
+        // 사용자에게 경고 메시지를 표시합니다.
+        alert(msg);
+    }
+
+    
+});
+	
+	*/
+	
+	  </script>
+	<script>
+	 $(function() {
+	     var datefilterInput = document.createElement("input");
+	     datefilterInput.type = "text";
+	     datefilterInput.name = "datefilter";
+	     datefilterInput.value = "";
+         datefilterInput.placeholder = "여행 날짜를 적어주세요";
+	     $(datefilterInput).addClass("centered-input diatop2");
+	     $('.calender').append(datefilterInput);
+	     $(datefilterInput).daterangepicker({
+	         autoUpdateInput: false,
+	         locale: {
+	             cancelLabel: 'Clear'
+	         }
+	     });
+	     $(datefilterInput).on('apply.daterangepicker', function(ev, picker) {
+	         $('#startDateInput').val(picker.startDate.format('YYYY/MM/DD'));
+	         $('#endDateInput').val(picker.endDate.format('YYYY/MM/DD'));
+	         $(this).val(picker.startDate.format('YYYY/MM/DD') + ' ~ ' + picker.endDate.format('YYYY/MM/DD'));
+	     });
+	     $(datefilterInput).on('cancel.daterangepicker', function(ev, picker) {
+	         $('#startDateInput').val('');
+	         $('#endDateInput').val('');
+	         $(this).val('');
+	     });
+	 });
+	</script>
+	</div>
+</div>

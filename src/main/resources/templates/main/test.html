@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="table align-items-center mb-0">
+    <thead>
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">이름</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">이메일</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">패스워드</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">가입날짜</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="userlist : ${userlist}">
+        <td>
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-0 text-sm" th:text="${userlist.id}"></h6>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-0 text-sm" th:text="${userlist.username}"></h6>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-0 text-sm" th:text="${userlist.email}"></h6>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-0 text-sm" th:text="${userlist.create_time}"></h6>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<h4>마이페이지 떼온거 임시 링크 페이지</h4>
+<a href="mypage"><h5>1마이페이지</h5></a>
+<a href="mydetail"><h5>2내정보디테일</h5></a>
+<a href="mylist"><h5>3내리스트</h5></a>
+<a href="memmodi"><h5>4내정보수정</h5></a>
+<a href="pwmodi"><h5>5비번수정</h5></a>
+<a href="memdelete"><h5>6탈퇴</h5></a>
+<a href="findmem"><h5>7내정보찾기</h5></a>
+<br>
+<br>
+<br>
+<br>
+<h4>상품페이지 게시판 임시 링크 </h4>
+<a href="list2"><h5>1글리스트</h5></a>
+<a href="write2"><h5>2글작성폼</h5></a>
+<a href="detail2"><h5>3상품디테일</h5></a>
+
+</body>
+</html>

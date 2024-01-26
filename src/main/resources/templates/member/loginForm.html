@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/sublayout}">
+  <div class="wrap_loginForm" layout:fragment="content">
+    <div class="login_in">
+      <form action="loginProcess" method="post" id="loginInfo" autocomplete="on">
+        <div class="login_info">
+          <h2>로그인</h2>
+          <div id="reip">
+            <input type="hidden" name="reip" value="ip">
+          </div>
+          <!-- email -->
+          <div class="login_email">
+            <input type="email" name="email" id="email" placeholder="이메일 입력">
+          </div>
+
+          <!-- pwd -->
+          <div class="login_pw">
+            <input type="password" name="pwd" id="pwd" placeholder="비밀번호 입력">
+          </div>
+
+          <!-- login etc -->
+          <div class="login_etc">
+            <div class="checkbox">
+              <input type="checkbox" name="logSession" id="logSession"> 로그인 상태 유지
+            </div>
+            <div class="forgot_pw">
+              <a th:href="@{/findmem}"><span>로그인 정보를 잊으셨나요?</span></a>
+            </div>
+          </div>
+
+          <!-- login btn -->
+          <div class="submit" style = "margin-top: 15px;">
+            <input type="submit" class = "submit-button" value="로그인">
+          </div>
+
+          <!-- 간편가입 줄  -->
+          <div class = "horizontal-line mt-4" style = "border-bottom: 1px solid #D9D9D9; width:100%; height: 20px; text-align: center;"></div>
+          <div class = "d-flex justify-content-center horizontal-line-text-warp mb-3">
+            <div class = "horizontal-line-text-w100 text-center" style = "font-size:14px; margin-top: -14px; background-color: white; width: 100px; color:#868686;">간편 로그인</div>
+          </div>
+
+          <!-- 간편 가입 btn -->
+          <!-- kakao btn -->
+          <div class = "login-icon" style = "align-items: center;">
+           <!-- <a href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}">-->
+          <a th:href="@{'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=29f8f3ec28cad5cb6c458bb52e5d7541&redirect_uri=http://localhost:8081/auth/kakao/callback'}">
+              <div class = "icon_kakao">
+                <div>
+                  <img src = "img/join_icon/kakao.png" style = "width:7%; width:30px; text-align: right;">
+                </div>
+                <span>카카오톡으로 로그인하기</span>
+              </div>
+          </a>
+            <!-- naver btn -->
+            <a href = "https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
+              <div class = "icon_naver">
+                <div>
+                  <img src = "img/join_icon/naver.jpg" style = "width:7%; width:30px; text-align: right;">
+                </div>
+                <span>네이버로 로그인하기</span>
+              </div>
+            </a>
+          </div>
+          <div class="to_join">
+            <div>
+              <span>아직 계정이 없나요?</span>
+            </div>
+            <a th:href="@{/join}">회원가입하러가기</a>
+          </div>
+        </div> <!-- login_info -->
+
+      </form>
+    </div> <!-- login_in -->
+  </div> <!-- wrap -->
+</html>

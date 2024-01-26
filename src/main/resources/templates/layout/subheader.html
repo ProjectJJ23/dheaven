@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <header class="subheader" th:fragment="subheaderFragment">
+  <div class="subheader-container text-light" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+    <div class="subheader-div">
+      <!-- 로그인 전 -->
+      <div class="subheader-login" th:if="${sessionID == null}" style="height: 48px; line-height: 48px;">
+        <ol class="subheader-breadcrumb mb-0">
+          <li class="subheader-breadcrumb-item"><a class="text-light" th:href="@{/join}">회원가입</a></li>
+          <li class="subheader-breadcrumb-item"><a class="text-light" th:href="@{/loginForm}">로그인</a></li>
+        </ol>
+      </div><!-- 로그인 전 -->
+      <!-- 로그인 후 -->
+      <div class="subheader-login" th:if="${sessionID != null}" style="height: 48px; line-height: 48px;">
+        <ol class="subheader-breadcrumb mb-0">
+          <li class="subheader-breadcrumb-item">
+            <a class="text-light" th:href="@{${application.getContextPath()}/mypage?email=${sessionID}}"
+               style="font-family: 'NanumSquareNeo-Variable';border: 1px solid rgb(223, 223, 223);border-radius: 5px;padding: 5px 20px;font-weight: bold;">
+             <img th:src="img/my.svg" style="width:25px;height:25px;border-radius: 50%;margin-right: 7px;"/>
+             <span th:text="${sessionName}"></span>
+            </a>
+          </li>
+          <li class="subheader-breadcrumb-item">
+            <a class="small text-light" th:href="@{/logout}" style="font-family: 'NanumSquareNeo-Variable';font-weight: bold;">로그아웃</a>
+          </li>
+        </ol>
+      </div><!-- 로그인 후 -->
+    </div>
+  </div>
+ </header>
+</html>

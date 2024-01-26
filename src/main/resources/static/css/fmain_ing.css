@@ -1,0 +1,186 @@
+@charset "EUC-KR";
+
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+h2{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+h3{font-family: 'NanumSquareNeo-Variable';}
+h4{font-family: 'NanumSquareNeo-Variable';}
+h5{font-family: 'NanumSquareNeo-Variable';}
+h6{font-family: 'NanumSquareNeo-Variable';}
+p{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+span{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+div{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+dl{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+b{font-family: 'NanumSquareNeo-Variable';}
+button{font-family: 'NanumSquareNeo-Variable';font-weight: 300;}
+
+
+
+.container{}
+
+.container .bar{
+	/* padding-left: 290px; */
+	display: flex;
+	/* margin-bottom: 20px;
+	margin-top: 15px;  */
+	justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    margin: 50px auto 10px;
+    gap:520px;
+}
+
+.container .bar span{
+	font-weight: bold; 
+	font-size: 20px; 
+	text-align: left;
+	}
+	
+.container .bar .top-bar{
+	display: flex; 
+	gap:15px;
+}
+
+.container .bar .top-bar ul{
+	
+	display: inline-flex;
+    align-items: center;
+    position: relative;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.container .bar .top-bar ul li{
+	display: inline-flex;
+    align-items:center;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.container .bar .top-bar ul li :before{
+	display: inline-block;
+    margin-right: 8px;
+    background-color: #c6c6c6;
+    width: 1px;
+    height: 12px;
+    content: "";
+	
+}
+
+.container .bar .top-bar ul li a{
+	margin-right: 5px;
+	
+	
+}
+/* ---------------영화 리스트-------------------- */
+
+.container .funding-movie .movie .ff{
+	color: gray; 
+	font-size: 12px; 
+	height: 70px;
+	text-align: left;
+}
+
+.container .funding-movie .movie span{
+	font-size: 14px; 
+	margin-bottom: 0px; 
+	/* margin-top: 7px;  */
+	color: black;
+}
+
+.container .funding-movie .movie .text-style{
+	display: flex; 
+	text-align: center; 
+	align-items: center; 
+	justify-content: space-between;
+}
+.container .funding-movie .movie .text-style .inner-text-style{
+	gap:10px;
+	text-align: center;
+}
+
+.container .funding-movie .movie .text-style .inner-text-style span:first-child{
+	color:#ff595e; 
+	font-size: 17px;
+}
+
+.container .funding-movie .movie .text-style .inner-text-style span:nth-child(2){
+	color:#777; 
+	font-size: 12px;
+}
+
+.container .funding-movie .movie .text-style .d-day span{
+	font-size: 12px;
+	font-weight: bold;
+}
+/* .container .funding-movie p:first-child{
+	color: gray; 
+	font-size: 14px; 
+	height: 130px;
+	}
+.container .funding-movie p:nth-child(2){font-size: small; margin-bottom: 0px; margin-top: 7px; color: black;} */
+
+.container .funding-movie {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); 
+      /* grid-template-columns: repeat(4, calc(20% - 10px)); */
+      /* grid-gap: -100px; */
+      grid-row-gap: 120px; 
+	  /* padding-right: 190px; */
+      /* padding-left: 300px; */
+      grid-column-gap:60px;
+      margin:0px auto;
+    }
+    
+.container .funding-movie .movie {
+   position: relative; 
+   overflow: hidden; 
+   /* margin: 10px; */
+    min-width: 230px; 
+    max-width: 280px; 
+    width: 100%; 
+    text-align: center; 
+    font-size: 16px;
+    }
+      
+.container .funding-movie .movie a img {
+	max-width: 100%; 
+	backface-visibility: hidden; 
+	vertical-align: top; 
+	opacity: 0.9; 
+	width:250px; 
+	height: 340px;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	}
+
+.container .funding-movie .movie a img:hover{
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+}
+
+.container .funding-movie .movie .caption {
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+.container .funding-movie .movie .progress-bar {
+      width: 100%;
+      height: 5px;
+      background-color: #e0e0e0;
+      margin-top: 10px;
+      margin-right: 50px;
+      max-width: 250px;
+    }
+.container .funding-movie .movie .progress-bar .progress-bar-inner {
+      height: 100%;
+      width: 100%;
+      background-color: #ff595e;
+    }
