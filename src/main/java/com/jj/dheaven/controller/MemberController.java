@@ -3,13 +3,18 @@ package com.jj.dheaven.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jj.dheaven.domain.Member;
+import com.jj.dheaven.dto.MemberJoinDto;
 import com.jj.dheaven.model.KakaoProfile;
 import com.jj.dheaven.model.OAuthToken;
+import com.jj.dheaven.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
 
     // 인증이 안된 사용자들이 출입할 수 있는 경로를 /auth/**허용
     // 그냥 주소가 / 이면 index.jsp 허용
     // static 이하에 있는 /js/**, /css/**, /image/** 허용
+    private final MemberService memberService;
+
 
 
     @GetMapping(value = "/join")
@@ -31,9 +39,21 @@ public class MemberController {
 
     //이메일로 가입하기 폼
     @GetMapping(value = "/email_join")
-    public String emailJoin(){
+    public String emailJoin(Model model, MemberJoinDto memberJoinDto){
+
+        //Member member =
+        model.addAttribute("memberJoinDto", new MemberJoinDto());
+
         return "member/joinForm";
     }
+
+    @GetMapping(value = "/joinComplete")
+    public String emailJoinComplete(Model model){
+        model.addAttribute("memberJoinDto", new MemberJoinDto());
+        return "redirect:/";
+    }
+
+
 
     // 주소검색 폼
     @GetMapping(value = "/email_join/address_form")
