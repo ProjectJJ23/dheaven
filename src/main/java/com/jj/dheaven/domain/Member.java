@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 @Table(name = "member")
 @Getter
 @ToString
-public class Member extends BaseTimeEntitiy {
+public class Member extends BaseTimeEntity {
 
     //기본키
     @Id
-    @Column(name = "mem_id")
+    @Column(name = "mem_no")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long mem_id;
+    private Long mem_no;
 
     @Column(name = "email", unique = true)
     private String email; //id 대신 이메일
@@ -43,9 +43,10 @@ public class Member extends BaseTimeEntitiy {
     private String role;
 
     @Builder
-    public Member(String mem_id, String password, String nickname,
-                  String name, LocalDate birthdate, String address, Roles role){
+    public Member(String email, String password, String nickname,
+                  String name, LocalDate birthdate, String address){
 
+        this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.name = name;
@@ -55,9 +56,8 @@ public class Member extends BaseTimeEntitiy {
 
     }
 
-/*
 
-    @Column(name = "cre_date")
+ /*   @Column(name = "cre_date")
     private LocalDateTime cre_date; // 회원가입일
 
     @Column(name = "upd_date")

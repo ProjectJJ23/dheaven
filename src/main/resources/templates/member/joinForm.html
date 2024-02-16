@@ -3,6 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/sublayout}">
   <div class="wrap_joinForm" layout:fragment="content">
+
+
     <div class="join_in">
       <form action="joinComplete" th:object="${memberJoinDto}" method="post" enctype="multipart/form-data" id="loginInfo" autocomplete="on">
         <input type="hidden" name="reip" value="ip">
@@ -36,7 +38,8 @@
             </div>
             <div class = "input-box" style = "">
               <input type="password" th:field="*{password}" name="pwd" id="pwd" placeholder="비밀번호 입력" style = "">
-              <input type="password" th:field="*{password}" name="pwd2" id="pwd2" placeholder="비밀번호 확인" style = "">
+              <input type="password" name="pwd2" id="pwd2" placeholder="비밀번호 확인" style = "">
+            <!--    <input type="password" th:field="*{password2}" name="pwd2" id="pwd2" placeholder="비밀번호 확인" style = "">-->
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
             </div>
             <span id = "passwordErrorMessage2"></span>
@@ -128,13 +131,14 @@
 
             emailChkBtn.addEventListener("click", function(e) {
                 e.preventDefault();
+                console.log("이메일 버튼 테스트1")
 
                 var emailValue = emailInput.value;
                 if (!isValidEmail(emailValue)) {
                     errorMessage.textContent = "올바른 이메일 형식이 아닙니다.";
                     errorMessage.style.fontSize = "13px";
                     errorMessage.style.color = "#fe5147";
-                    messageBox.textContent = "'laura@laura.com' 형식에 맞게 다시 입력해주세요!";
+                    messageBox.textContent = "'dheaven@dheaven.com' 형식에 맞게 다시 입력해주세요!";
                     messageBox.style.fontSize = "13px";
                     messageBox.style.display = "block"; // 메시지 박스 보이도록 설정
                     messageBox.style.color = "#fe5147";
@@ -180,7 +184,8 @@
                     }
                 };
 
-                xhr.open("GET", "<%=application.getContextPath()%>/idcheck?" + param, true);
+                //xhr.open("GET", "<%=application.getContextPath()%>/idcheck?" + param, true);
+                xhr.open("GET", "/idcheck?email=" + email, true);
                 xhr.send();
             }
         };
@@ -366,15 +371,6 @@
                 })
             })*/
     </script>
-
-      <!--카카오지도 api-->
-      <script type="text/javascript">
-          function openPop(){
-             // localStorage.setItem("num", n);
-              var popup = window.open('http://localhost:8081/email_join/address_form', '팝업', 'width=1200px,height=560px,scrollbars=no,top=200px,left=-1550px');
-          }
-      </script>
-
 
   </div>
 </html>

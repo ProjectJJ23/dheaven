@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,17 +41,22 @@ public class MemberController {
     //이메일로 가입하기 폼
     @GetMapping(value = "/email_join")
     public String emailJoin(Model model, MemberJoinDto memberJoinDto){
-
-        //Member member =
-        model.addAttribute("memberJoinDto", new MemberJoinDto());
-
+        model.addAttribute("memberJoinDto", memberJoinDto);
         return "member/joinForm";
     }
 
-    @GetMapping(value = "/joinComplete")
-    public String emailJoinComplete(Model model){
-        model.addAttribute("memberJoinDto", new MemberJoinDto());
-        return "redirect:/";
+    @PostMapping(value = "/joinComplete")
+    public String emailJoinComplete(MemberJoinDto memberJoinDto){
+        //System.out.println("가입 컨트롤러 ");
+        Member member = new Member(
+                memberJoinDto.getEmail(), memberJoinDto.getPassword(),
+                memberJoinDto.getNickname(), memberJoinDto.getName(),
+                memberJoinDto.getBirthdate(), memberJoinDto.getAddress()
+                );
+        memberService.saveMember(member);
+        System.out.println("회원 가입 완료");
+
+        return "redirect:/loginForm";
     }
 
 
