@@ -18,9 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,16 +47,33 @@ public class MemberController {
         return "member/joinForm";
     }
 
+    //이메일 중복체크를 위한 엔드포인트
+    @GetMapping("/mem-emails/{email}/exists")
+    public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable String email){
+        System.out.println("컨트롤러 엔드포인트: email값:"+email);
+        return ResponseEntity.ok(memberService.checkEmailDuplicate(email));
+        //결과물 항상 200 상태다
+    }
+
+    //닉네임 중복체크를 위한 엔드포인트
+    @GetMapping("/mem-nicknames/{nickname}/exists")
+    public ResponseEntity<Boolean> checkNicknameDuplicate(@PathVariable String nickname){
+        System.out.println("컨트롤러 엔드포인트: nickname값:"+nickname);
+        return ResponseEntity.ok(memberService.checkNicknameDuplicate(nickname));
+        //결과물 항상 200 상태다
+    }
+
+
     @PostMapping(value = "/joinComplete")
-    public String emailJoinComplete(MemberJoinDto memberJoinDto){
-        //System.out.println("가입 컨트롤러 ");
-        Member member = new Member(
-                memberJoinDto.getEmail(), memberJoinDto.getPassword(),
-                memberJoinDto.getNickname(), memberJoinDto.getName(),
-                memberJoinDto.getBirthdate(), memberJoinDto.getAddress()
-                );
-        memberService.saveMember(member);
-        System.out.println("회원 가입 완료");
+    public String emailJoinComplete(MemberJoinDto memberJoinDto, RedirectAttributes redirectAttributes){
+            Member member = new Member(
+                    memberJoinDto.getEmail(), memberJoinDto.getPassword(),
+                    memberJoinDto.getNickname(), memberJoinDto.getName(),
+                    memberJoinDto.getBirthdate(), memberJoinDto.getAddress()
+            );
+            memberService.saveMember(member);
+            System.out.println("회원 가입 완료");
+            redirectAttributes.addAttribute("JoinMsg","회원가입 완료. 로그인 하세요");
 
         return "redirect:/loginForm";
     }
@@ -66,6 +85,8 @@ public class MemberController {
     public String join_map2(){
         return "member/address_form";
     }
+
+
     //지도 api
  /*   @GetMapping(value = "/email_join/map")
     public String join_map(){

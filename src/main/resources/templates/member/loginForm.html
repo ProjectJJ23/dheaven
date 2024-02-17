@@ -6,6 +6,11 @@
     <div class="login_in">
       <form action="loginProcess" method="post" id="loginInfo" autocomplete="on">
         <div class="login_info">
+          <!--회원가입 완료시에만 뜨는 메세지-->
+          <div th:if="${param.JoinMsg}" class="message" style="font-family: 'Arial', sans-serif; color: #ff0000; font-size: 23px; font-weight: bold;">
+            <p th:text="${param.JoinMsg}"></p>
+          </div>
+          <!--회원가입 완료시에만 뜨는 메세지 끝-->
           <h2>로그인</h2>
           <div id="reip">
             <input type="hidden" name="reip" value="ip">
@@ -29,6 +34,8 @@
               <a th:href="@{/findmem}"><span>로그인 정보를 잊으셨나요?</span></a>
             </div>
           </div>
+
+
 
           <!-- login btn -->
           <div class="submit" style = "margin-top: 15px;">
@@ -74,4 +81,5 @@
       </form>
     </div> <!-- login_in -->
   </div> <!-- wrap -->
+
 </html>

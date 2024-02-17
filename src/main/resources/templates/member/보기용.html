@@ -69,7 +69,7 @@
             <div class = "input-box">
                 <input type="text" th:field="*{nickname}" name="nickname" id="nickname" placeholder="닉네임 입력" style = "text-indent: 7px; border: 1px solid #a4a4a4; border-radius: 4px;">
                 <p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" class="fieldError">Incorrect data</p>
-                <button type="button" class="button" id="nnameChkBtn">중복체크</button>
+                <button type="button" class="button" id="nickChkBtn">중복체크</button>
                 <br>
                 <span id="target2"></span>
             </div>

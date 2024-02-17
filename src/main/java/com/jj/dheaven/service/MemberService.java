@@ -16,20 +16,33 @@ public class MemberService {
 
     public Member saveMember(Member member){
         //System.out.println("가입 서비스계층 ");
-        validateDuplicateMember(member);
+        //validateDuplicateMember(member);
         return memberRepository.save(member);
     }
 
+    public boolean checkEmailDuplicate(String email) {
+        System.out.println("서비스 계층 이메일 중복체크 메소드 작동1");
+        return memberRepository.existsByEmail(email);
+    }
 
-    private void validateDuplicateMember(Member member){
+    public boolean checkNicknameDuplicate(String nickname) {
+        System.out.println("서비스 계층 nickname 중복체크 메소드 작동1");
+        return memberRepository.existsByNickname(nickname);
+    }
+
+    
+    //보류
+/*    private void validateDuplicateEmail(Member member){
         Member findMember = memberRepository.findByEmail(member.getEmail());
-       // System.out.println("서비스 계층 가입 중복 메소드 작동");
+       System.out.println("서비스 계층 이메일 중복체크 메소드 작동");
         if(findMember != null){
             throw new IllegalStateException("이미 가입된 메일주소 입니다.");
+        }else {
+            System.out.println("가입이 가능한 이메일 입니다.");
         }
 
 
-    }
+    }*/
 
 
 

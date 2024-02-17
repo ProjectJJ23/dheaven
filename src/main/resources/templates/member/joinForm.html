@@ -3,6 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/sublayout}">
   <div class="wrap_joinForm" layout:fragment="content">
+      <!-- jQuery CDN -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
     <div class="join_in">
@@ -23,7 +25,7 @@
               <input type="email" th:field="*{email}" name="email" id="email" placeholder = "이메일을 입력해주세요" style = "">
                 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
                 <button type="button" class="button" id="emailChkBtn">중복체크</button>
-              <br>
+                <br>
               <span id="target"></span>
               <div id="messageBox" class="message-box">
                 <p id="errorMessage" class="error-message"></p>
@@ -69,7 +71,7 @@
                 <div class = "input-box">
                     <input type="text" th:field="*{nickname}" name="nickname" id="nickname" placeholder="닉네임 입력" style = "text-indent: 7px; border: 1px solid #a4a4a4; border-radius: 4px;">
                     <p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" class="fieldError">Incorrect data</p>
-                    <button type="button" class="button" id="nnameChkBtn">중복체크</button>
+                    <button type="button" class="button" id="nickChkBtn">중복체크</button>
                     <br>
                     <span id="target2"></span>
                 </div>
@@ -125,20 +127,21 @@
             var emailInput = document.getElementById("email");
             var emailChkBtn = document.getElementById("emailChkBtn");
             var errorMessage = document.getElementById("target");
-            var errorMsgBox = document.getElementById("messageBox");
-            var emailInput = document.getElementById("email-box");
-
+            var messageBox = document.getElementById("messageBox");
 
             emailChkBtn.addEventListener("click", function(e) {
+               //이벤트의 기본 동작을 취소하는 메서드 링크이동 막기
                 e.preventDefault();
-                console.log("이메일 버튼 테스트1")
 
                 var emailValue = emailInput.value;
+                console.log("emailVlaue:"+emailValue);
+
+                //이메일 형식 검사
                 if (!isValidEmail(emailValue)) {
                     errorMessage.textContent = "올바른 이메일 형식이 아닙니다.";
                     errorMessage.style.fontSize = "13px";
                     errorMessage.style.color = "#fe5147";
-                    messageBox.textContent = "'dheaven@dheaven.com' 형식에 맞게 다시 입력해주세요!";
+                    messageBox.textContent = "'loo@dheaven.com' 형식에 맞게 다시 입력해주세요!";
                     messageBox.style.fontSize = "13px";
                     messageBox.style.display = "block"; // 메시지 박스 보이도록 설정
                     messageBox.style.color = "#fe5147";
@@ -154,42 +157,45 @@
                 }
             });
 
+
+            //이메일 형식 검사
             function isValidEmail(email) {
                 var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
                 return emailPattern.test(email);
             }
 
+            //이메일 중복 체크
             function checkEmailAvailability(email) {
+                //서버와 클라이언트와 데이터를 교환하기 위한 객체(비동기)
                 var xhr = new XMLHttpRequest();
-                var param = "email=" + email;
+                //var param = "email=" + email;
+                //엔드포인트url
+                var url = "/mem-emails/" + email + "/exists"
 
+                console.log("url : "+url);
+
+                //새로
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
-                            var idCnt = parseInt(xhr.responseText);
-                            var msg = "";
-
-                            if (idCnt === 0) {
-                                msg = "사용 가능한 이메일 주소 입니다.";
-                                errorMessage.style.color = '#018945';
-                                errorMessage.style.fontSize = "13px";
-                            } else {
-                                msg = "이미 사용 중인 이메일 주소 입니다.";
+                            var responseData = xhr.responseText; // 서버에서 받은 데이터
+                            if (responseData.trim().toLowerCase() === "true") { // true 또는 false로 반환될 것으로 가정
+                                errorMessage.textContent = "이미 사용 중인 이메일 주소 입니다.";
                                 errorMessage.style.color = '#fe5147';
                                 errorMessage.style.fontSize = "13px";
-
+                            } else {
+                                errorMessage.textContent = "사용 가능한 이메일 주소 입니다.";
+                                errorMessage.style.color = '#018945';
+                                errorMessage.style.fontSize = "13px";
                             }
-                            errorMessage.textContent = msg;
                         }
                     }
                 };
-
-                //xhr.open("GET", "<%=application.getContextPath()%>/idcheck?" + param, true);
-                xhr.open("GET", "/idcheck?email=" + email, true);
+                xhr.open("GET", url, true);
                 xhr.send();
             }
-        };
 
+        };
 
 
         //-----------------------------password check--------------------------------------------
@@ -250,23 +256,30 @@
 
 
         //-----------------------------nickname check--------------------------------------------
+
         $(function() {
-            $('#nnameChkBtn').click(function(e) {
+            $('#nickChkBtn').click(function(e) {
                 e.preventDefault();
-                let nnamev = $('#nickname').val();
+                let nickValue = $('#nickname').val();
+               // console.log("nickValue: "+nickValue);
 
                 //Ajax 통신의 캐시 기능을 삭제
                 $.ajaxSetup({
                     cache:false
                 });
                 //Ajax 처리
-                let path = "<%=application.getContextPath()%>/nickcheck?nickname="+nnamev;
+                let path = "/mem-nicknames/" + nickValue + "/exists";
+                //console.log("path: "+path);
+
                 $.ajax({
                     url:path,
-                    success:function(resData){ //callbac 함수인 xhr.responseText 합친 개념
-                        let idCnt = parseInt(resData);
+                    success:function(resData){ //callback 함수인 xhr.responseText 합친 개념
+                       // let idCnt = parseInt(resData);
                         let msg = "";
-                        if (idCnt === 0) {
+                        //resData = 컨트롤러에서 true,false인지를 담는 변수
+                        console.log("resData: "+resData);
+                       // if (idCnt === 0) {
+                          if (!resData){
                             msg = "사용 가능한 닉네임 입니다.";
                             $('#target2').css({"color":"#005fbd" });
                             $('#target2').css("font-size","13px");
@@ -276,8 +289,9 @@
                             $('#target2').css("font-size","13px");
                             $('#target2').css("color","#fe5147");
                         }
-                        $('#target2').html(msg);
-
+                        //$('#target2').html(msg);
+                        $('#target2').text(msg);
+                          console.log("msg:"+msg);
                     }
                 });
             });
@@ -285,6 +299,7 @@
 
 
         //-----------------------------tel check--------------------------------------------
+        /*
         $(function() {
             $('#telChkBtn').click(function(e) {
                 e.preventDefault();
@@ -335,7 +350,7 @@
                 telErrorMessage.style.borderColor = "";
             }
         });
-
+        */
 
 
         //-----------------------------imgfile check--------------------------------------------
@@ -371,6 +386,15 @@
                 })
             })*/
     </script>
+
+      <!--주소검색 -->
+      <script type="text/javascript">
+          function openPop(){
+             // localStorage.setItem("num", n);
+              var popup = window.open('http://localhost:8081/email_join/address_form', '팝업', 'width=1200px,height=560px,scrollbars=no,top=200px,left=-1550px');
+          }
+      </script>
+      <!--주소검색 끝-->
 
   </div>
 </html>
