@@ -37,27 +37,30 @@
             <div class="row gx-0 align-items-center d-none d-lg-flex">
                 <!--DB적용 후 바꿀 부분-->
                 <!-- 로그인 전 -->
-                <div class="col-lg-6 px-5 text-start" th:if="${sessionID == null}" style="height: 48px; line-height: 48px;">
+         <!--       <div class="col-lg-6 px-5 text-start" th:if="${sessionEmail == null}" style="height: 48px; line-height: 48px;">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a class="small text-light" th:href="@{/join}" style="text-align: center;">회원가입</a></li>
                         <li class="breadcrumb-item"><a class="small text-light" th:href="@{/loginForm}" style="text-align: center;">로그인</a></li>
                     </ol>
-                </div><!-- 로그인 전 -->
+                </div>&lt;!&ndash; 로그인 전 &ndash;&gt;-->
 
                 <!-- 로그인 후 -->
-                <div class="col-lg-6 px-5 text-start" th:if="${sessionID != null}" style="height: 48px; line-height: 48px;">
+                <div class="col-lg-6 px-5 text-start" th:if="${sessionEmail != null}" style="height: 48px; line-height: 48px;">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
-                            <a class="small text-light" th:href="@{${application.getContextPath()}/mypage?email=${sessionID}}" style="font-family: 'NanumSquareNeo-Variable';border: 1px solid rgb(223, 223, 223);border-radius: 5px;padding: 5px 20px;font-weight: bold;">
+
+                            <a class="small text-light" th:href="@{/mypage}" style="font-family: 'NanumSquareNeo-Variable';border: 1px solid rgb(223, 223, 223);border-radius: 5px;padding: 5px 20px;font-weight: bold;">
                                 <img th:src="img/my.svg" style="width:25px;height:25px;border-radius: 50%;margin-right: 7px;"/>
-                                <span th:text="${sessionName}"></span>
+                                <span th:text="${sessionNickname}">님 반갑습니다.</span>
                             </a>
+
                         </li>
                         <li class="breadcrumb-item">
                             <a class="small text-light" th:href="@{/logout}" style="font-family: 'NanumSquareNeo-Variable';font-weight: bold;">로그아웃</a>
                         </li>
                     </ol>
-                </div><!-- 로그인 후 -->
+                </div>
+                <!-- 로그인 후 -->
                 <!--DB적용 후 바꿀 부분
                 <div class="col-lg-6 px-5 text-end">
                     <small>Follow us:</small>
@@ -70,4 +73,7 @@
             </div>
         </div>
     </div>
+
+
+
 </html>

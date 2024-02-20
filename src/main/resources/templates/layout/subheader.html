@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
  <header class="subheader" th:fragment="subheaderFragment">
-  <div class="subheader-container text-light" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+ <!-- <div class="subheader-container text-light" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
     <div class="subheader-div">
-      <!-- 로그인 전 -->
+      &lt;!&ndash; 로그인 전 &ndash;&gt;
       <div class="subheader-login" th:if="${sessionID == null}" style="height: 48px; line-height: 48px;">
         <ol class="subheader-breadcrumb mb-0">
           <li class="subheader-breadcrumb-item"><a class="text-light" th:href="@{/join}">회원가입</a></li>
           <li class="subheader-breadcrumb-item"><a class="text-light" th:href="@{/loginForm}">로그인</a></li>
         </ol>
-      </div><!-- 로그인 전 -->
-      <!-- 로그인 후 -->
+      </div>&lt;!&ndash; 로그인 전 &ndash;&gt;
+      &lt;!&ndash; 로그인 후 &ndash;&gt;
       <div class="subheader-login" th:if="${sessionID != null}" style="height: 48px; line-height: 48px;">
         <ol class="subheader-breadcrumb mb-0">
           <li class="subheader-breadcrumb-item">
@@ -24,8 +24,8 @@
             <a class="small text-light" th:href="@{/logout}" style="font-family: 'NanumSquareNeo-Variable';font-weight: bold;">로그아웃</a>
           </li>
         </ol>
-      </div><!-- 로그인 후 -->
+      </div>&lt;!&ndash; 로그인 후 &ndash;&gt;
     </div>
-  </div>
+  </div>-->
  </header>
 </html>

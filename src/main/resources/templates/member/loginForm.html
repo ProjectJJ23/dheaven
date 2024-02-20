@@ -4,25 +4,33 @@
       layout:decorate="~{layout/sublayout}">
   <div class="wrap_loginForm" layout:fragment="content">
     <div class="login_in">
-      <form action="loginProcess" method="post" id="loginInfo" autocomplete="on">
+      <form action="loginCheck" th:object="${memberLoginDto}"  method="post" id="loginInfo" autocomplete="on">
         <div class="login_info">
           <!--회원가입 완료시에만 뜨는 메세지-->
-          <div th:if="${param.JoinMsg}" class="message" style="font-family: 'Arial', sans-serif; color: #ff0000; font-size: 23px; font-weight: bold;">
-            <p th:text="${param.JoinMsg}"></p>
+          <div th:if="${param.joinMsg}" class="message" style="font-family: 'Arial', sans-serif; color: #ff0000; font-size: 23px; font-weight: bold;">
+            <p th:text="${param.joinMsg}"></p>
           </div>
           <!--회원가입 완료시에만 뜨는 메세지 끝-->
+          <!--비밀번호나 아이디 틀린 때만 뜨는 메세지 -->
+          <div th:if="${param.loginError}" class="message" style="font-family: 'Arial', sans-serif; color: #ff0000; font-size: 23px; font-weight: bold;">
+            <p th:text="${param.loginError}"></p>
+          </div>
+          <!--비밀번호나 아이디 틀린 때만 뜨는 메세지 끝-->
           <h2>로그인</h2>
-          <div id="reip">
-            <input type="hidden" name="reip" value="ip">
+      <!--    <div id="reip">
+            <input type="hidden" th:text="${reip}" name="reip">
+          </div>-->
+          <div id="reip" style="display: none;">
+            <input type="hidden" th:text="${reip}" name="reip">
           </div>
           <!-- email -->
           <div class="login_email">
-            <input type="email" name="email" id="email" placeholder="이메일 입력">
+            <input type="email" th:field="*{email}" name="email" id="email" placeholder="이메일 입력">
           </div>
 
           <!-- pwd -->
           <div class="login_pw">
-            <input type="password" name="pwd" id="pwd" placeholder="비밀번호 입력">
+            <input type="password" th:field="*{password}" name="password" id="password" placeholder="비밀번호 입력">
           </div>
 
           <!-- login etc -->

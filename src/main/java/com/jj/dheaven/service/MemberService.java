@@ -14,6 +14,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    //회원가입
     public Member saveMember(Member member){
         //System.out.println("가입 서비스계층 ");
         //validateDuplicateMember(member);
@@ -21,13 +22,19 @@ public class MemberService {
     }
 
     public boolean checkEmailDuplicate(String email) {
-        System.out.println("서비스 계층 이메일 중복체크 메소드 작동1");
+        System.out.println("서비스 계층 이메일 중복체크 메소드 작동");
         return memberRepository.existsByEmail(email);
     }
 
     public boolean checkNicknameDuplicate(String nickname) {
-        System.out.println("서비스 계층 nickname 중복체크 메소드 작동1");
+        System.out.println("서비스 계층 nickname 중복체크 메소드 작동");
         return memberRepository.existsByNickname(nickname);
+    }
+
+    //로그인
+    public Member findMember(String email){
+        Member member = memberRepository.findByEmail(email);
+        return member;
     }
 
     

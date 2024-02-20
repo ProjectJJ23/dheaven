@@ -1,5 +1,6 @@
 package com.jj.dheaven.domain;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,26 +22,29 @@ public class Member extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mem_no;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true,nullable = false)
     private String email; //id 대신 이메일
 
-    @Column(name = "password")
+    //카카오 가입시 널?
+    @Column(name = "password",nullable = false)
     private String password;
 
-    @Column(name = "nickname", unique = true)
+    @Column(name = "nickname", unique = true,nullable = false)
     private String nickname;
 
-    @Column(name = "name")
+    @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "birthdate")
+    @Column(name = "birthdate",nullable = false)
     private LocalDate birthdate; //생년월일 시간제외
 
-    @Column(name = "address")
+
+    @Column(name = "address", nullable = true)
     private String address;
 
-    @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role",nullable = false)
+    private Roles role;
 
     @Builder
     public Member(String email, String password, String nickname,
@@ -52,7 +56,7 @@ public class Member extends BaseTimeEntity {
         this.name = name;
         this.birthdate = birthdate;
         this.address = address;
-        this.role = String.valueOf(Roles.MEMBER);
+        this.role = Roles.MEMBER;
 
     }
 

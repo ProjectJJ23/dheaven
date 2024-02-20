@@ -5,9 +5,12 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jj.dheaven.domain.Member;
 import com.jj.dheaven.dto.MemberJoinDto;
+import com.jj.dheaven.dto.MemberLoginDto;
 import com.jj.dheaven.model.KakaoProfile;
 import com.jj.dheaven.model.OAuthToken;
 import com.jj.dheaven.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,12 +20,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,6 +37,8 @@ public class MemberController {
     // 그냥 주소가 / 이면 index.jsp 허용
     // static 이하에 있는 /js/**, /css/**, /image/** 허용
     private final MemberService memberService;
+    private final HttpServletRequest request;
+
 
 
 
@@ -47,6 +54,7 @@ public class MemberController {
         return "member/joinForm";
     }
 
+    //ENDPOINT는 API가 서버에서 리소스에 접근할 수 있도록 가능하게 하는 URL
     //이메일 중복체크를 위한 엔드포인트
     @GetMapping("/mem-emails/{email}/exists")
     public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable String email){
@@ -54,7 +62,6 @@ public class MemberController {
         return ResponseEntity.ok(memberService.checkEmailDuplicate(email));
         //결과물 항상 200 상태다
     }
-
     //닉네임 중복체크를 위한 엔드포인트
     @GetMapping("/mem-nicknames/{nickname}/exists")
     public ResponseEntity<Boolean> checkNicknameDuplicate(@PathVariable String nickname){
@@ -62,10 +69,15 @@ public class MemberController {
         return ResponseEntity.ok(memberService.checkNicknameDuplicate(nickname));
         //결과물 항상 200 상태다
     }
+    // 주소검색 폼
+    @GetMapping(value = "/email_join/address_form")
+    public String join_map(){
+        return "member/address_form";
+    }
 
 
     @PostMapping(value = "/joinComplete")
-    public String emailJoinComplete(MemberJoinDto memberJoinDto, RedirectAttributes redirectAttributes){
+    public String joinComplete(MemberJoinDto memberJoinDto, RedirectAttributes redirectAttributes){
             Member member = new Member(
                     memberJoinDto.getEmail(), memberJoinDto.getPassword(),
                     memberJoinDto.getNickname(), memberJoinDto.getName(),
@@ -73,17 +85,9 @@ public class MemberController {
             );
             memberService.saveMember(member);
             System.out.println("회원 가입 완료");
-            redirectAttributes.addAttribute("JoinMsg","회원가입 완료. 로그인 하세요");
+            redirectAttributes.addAttribute("joinMsg","회원가입 완료. 로그인 하세요");
 
         return "redirect:/loginForm";
-    }
-
-
-
-    // 주소검색 폼
-    @GetMapping(value = "/email_join/address_form")
-    public String join_map2(){
-        return "member/address_form";
     }
 
 
@@ -93,15 +97,52 @@ public class MemberController {
         return "member/map";
     }*/
 
-    @GetMapping(value = "/loginForm")
-    public String login(){
-        return "member/loginForm";
-    }
 
 
-    //카카오 간편로그인
+
+
+    //카카오 간편로그인 : 인증처리 + accessToken을 부여받아서 해당카카오 계정에 접근가능한 권한을 부여
+    //테스트 메서드
+  /*  @GetMapping(value = "/auth/kakao/callback") //Data를 리턴해주는 컨트롤러 함수
+    public @ResponseBody String kakaoCallback2(String code){
+
+        // POST 방식으로 key=value 데이터를 요청 (카카오쪽으로)
+        // 이 때 필요한 라이브러리가 RestTemplate, 얘를 쓰면 http 요청을 편하게 할 수 있다.
+        RestTemplate rt = new RestTemplate();
+
+        // HTTP POST를 요청할 때 보내는 데이터(body)를 설명해주는 헤더도 만들어 같이 보내줘야 한다.
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        // body 데이터를 담을 오브젝트인 MultiValueMap를 만들어보자
+        // body는 보통 key, value의 쌍으로 이루어지기 때문에 자바에서 제공해주는 MultiValueMap 타입을 사용한다.
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("grant_type", "authorization_code");
+        params.add("client_id", "ab62b7e0ca424144a4f5e9f13a156b72");
+        params.add("redirect_uri", "http://localhost:8081/auth/kakao/callback");
+        params.add("code", code);
+
+        // 요청하기 위해 헤더(Header)와 데이터(Body)를 합친다.
+        // kakaoTokenRequest는 데이터(Body)와 헤더(Header)를 Entity가 된다.
+        HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
+
+        // POST 방식으로 Http 요청한다. 그리고 response 변수의 응답 받는다.
+        ResponseEntity<String> response = rt.exchange(
+                "https://kauth.kakao.com/oauth/token", // https://{요청할 서버 주소}
+                HttpMethod.POST, // 요청할 방식
+                kakaoTokenRequest, // 요청할 때 보낼 데이터
+                String.class // 요청 시 반환되는 데이터 타입
+        );
+        return response.getBody();
+    }*/
+
+
+
+
+
+
     @GetMapping(value = "/auth/kakao/callback")
-    public @ResponseBody String kakaoCallback(String code){
+    public @ResponseBody String kakaoCallback(@RequestParam String code){
         //Data를 리턴해주는 컨트롤러 함수
         //System.out.println(code);  // return "카카오 인증 완료"+" 코드값 : "+code;
 
@@ -117,7 +158,7 @@ public class MemberController {
         // body는 보통 key, value의 쌍으로 이루어지기 때문에 자바에서 제공해주는 MultiValueMap 타입을 사용한다.
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client_id", "29f8f3ec28cad5cb6c458bb52e5d7541");
+        params.add("client_id", "ab62b7e0ca424144a4f5e9f13a156b72");
         params.add("redirect_uri", "http://localhost:8081/auth/kakao/callback");
         params.add("code", code);
 
@@ -195,6 +236,12 @@ public class MemberController {
        return response2.getBody();
     }
 
+    //카카오 로그아웃
+
+
+
+
+
 
 
     //회원정보 찾기 비번 찾기
@@ -205,10 +252,18 @@ public class MemberController {
 
 
     //마이페이지
-    @GetMapping(value = "/mypage")
-    public String mypage(){
+    @GetMapping("/mypage")
+    public String mypage(@RequestParam String email){
         return "member/mypage";
     }
+
+    //임시 마이페이지 (프론트 작업용)
+   // @GetMapping("/mypage")
+    public String mypage2(){
+        return "member/mypage";
+    }
+
+
 
     //내정보 디테일
     @GetMapping(value = "/mydetail")

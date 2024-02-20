@@ -39,7 +39,6 @@ public class MemberJoinDto {
     @NotBlank(message = "생년월일은 필수로 입력하셔야 합니다.")
     private LocalDate birthdate; //생년월일
 
-    @NotBlank(message = "주소는 필수로 입력하셔야 합니다.")
     private String address;
 
     public Member toMember(){
