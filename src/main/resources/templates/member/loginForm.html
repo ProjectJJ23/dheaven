@@ -4,6 +4,7 @@
       layout:decorate="~{layout/sublayout}">
   <div class="wrap_loginForm" layout:fragment="content">
     <div class="login_in">
+    <!--  th:action="|@{/{loginType}/login (loginType=${loginType})}|"-->
       <form action="loginCheck" th:object="${memberLoginDto}"  method="post" id="loginInfo" autocomplete="on">
         <div class="login_info">
           <!--회원가입 완료시에만 뜨는 메세지-->

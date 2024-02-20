@@ -33,9 +33,13 @@ public class MemberService {
 
     //로그인
     public Member findMember(String email){
-        Member member = memberRepository.findByEmail(email);
-        return member;
+        return memberRepository.findByEmail(email);
     }
+
+ //   @Transactional(readOnly = true)
+  //  public Member login(String email, String password){
+  //      return memberRepository.findByEmailAndPassword(email, password);
+   // }
 
     
     //보류

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <nav th:fragment="subnavFragment" class="subnav" data-wow-delay="0.1s">
-    <a href="/" class="subnav-brand">
+    <a th:href = "@{/}" class="subnav-brand">
         <h1>Drinking Heaven</h1>
     </a>
     <div class="subnav-collapse" id="subnavCollapse">
         <div class="subnav-nav mx-auto p-4 p-lg-0">
             <a th:href = "@{/}" class="subnav-item subnav-link active">Home</a>
             <!-- 로그인 전 -->
-            <th:block th:if="${sessionEmail == null}">
-            <a th:href = "@{/join}" class="subnav-item subnav-link active">회원가입</a>
-            <a th:href = "@{/loginForm}" class="subnav-item subnav-link active">로그인</a>
-            </th:block>  <!-- 로그인 전 -->
-            <!-- 로그인 후-->
-            <th:block th:if="${sessionEmail != null}">
-                <a th:href = "@{/mypage}" class="subnav-item subnav-link active">마이페이지</a>
-                <a th:href = "@{/logout}" class="subnav-item subnav-link active">로그아웃</a>
-            </th:block><!-- 로그인 후-->
+            <th:block th:if="${session.sessionEmail == null}">
+                <a th:href="@{/join}" class="nav-item nav-link active" style="color: #EAA636; opacity: 1; margin-top: 28px;">회원가입</a>
+                <a th:href="@{/loginForm}" class="nav-item nav-link active" style="color: #EAA636; opacity: 1; margin-top: 28px;">로그인</a>
+                <!-- 로그인 전 -->
+            </th:block>
+            <!-- 로그인 후 -->
+            <th:block th:if="${session.sessionEmail != null}">
+                <a th:href="@{/mypage}"  class="nav-item nav-link active" style="color: #EAA636; opacity: 1; margin-top: 28px;">마이페이지</a>
+                <a th:href="@{/logout}" class="nav-item nav-link active" style="color: #EAA636; opacity: 1; margin-top: 28px;">로그아웃</a>
+                <!--     <h3>[[${session.sessionNickname}]]님 환영합니다!</h3>-->
+            </th:block>
+            <!-- 로그인 후 -->
+
 
             <a th:href = "@{/join}" class="subnav-item subnav-link">신상품</a>
 
@@ -34,5 +38,9 @@
             <a th:href = "@{/join}" class="subnav-item subnav-link">고객센터</a>
             <a th:href = "@{/cart}" class="subnav-item subnav-link">장바구니</a>
         </div>
+        <th:block th:if="${session.sessionEmail != null}">
+            <h6 style="color: white; font-weight: 100;">[[${session.sessionNickname}]]님 환영합니다!</h6>
+        </th:block>
     </div>
+
 </nav>
