@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //@Controller
 @RequiredArgsConstructor
-@RequestMapping("/oauth")
+//@RequestMapping("/oauth")
 public class OAuthController {
 
     @Value("ab62b7e0ca424144a4f5e9f13a156b72")

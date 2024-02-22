@@ -25,9 +25,13 @@ public class Member extends BaseTimeEntity {
     @Column(name = "email", unique = true,nullable = false)
     private String email; //id 대신 이메일
 
-    //카카오 가입시 널?
-    @Column(name = "password",nullable = false)
+    //그냥 회원 가입시 패스워드, 카카오 가입시 비번대신 토큰
+    @Column(name = "password",nullable = true)
     private String password;
+
+    @Column(name = "kakao_token",nullable = true)
+    private String kakao_token;
+
 
     @Column(name = "nickname", unique = true,nullable = false)
     private String nickname;
@@ -38,7 +42,7 @@ public class Member extends BaseTimeEntity {
     @Column(name = "birthdate",nullable = false)
     private LocalDate birthdate; //생년월일 시간제외
 
-
+    //카카오 가입자는 주문시에 주소작성하여 테이블에 들어오도록
     @Column(name = "address", nullable = true)
     private String address;
 
@@ -61,23 +65,11 @@ public class Member extends BaseTimeEntity {
     }
 
 
- /*   @Column(name = "cre_date")
-    private LocalDateTime cre_date; // 회원가입일
+ /* 이부분은 자동으로 설정해줌   @Column(name = "cre_date")
+    private LocalDateTime cre_date; // 회원가입 날짜
 
     @Column(name = "upd_date")
-    private LocalDateTime upd_date; // 회원정보 수정날짜?
+    private LocalDateTime upd_date; // 회원정보 수정날짜
 */
-/*
-@ElementCollection(fetch = FetchType.LAZY)
-@Builder.Default
-private Set<Roles> rolesSet = new HashSet<>();
-
-public void addRoles(Roles roles){
-    rolesSet.add(roles);
-}
-*/
-/*    @Enumerated(EnumType.STRING)
-    private Roles roles;*/
-
 
 }

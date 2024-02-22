@@ -41,19 +41,8 @@ public class MemberService {
   //      return memberRepository.findByEmailAndPassword(email, password);
    // }
 
-    
-    //보류
-/*    private void validateDuplicateEmail(Member member){
-        Member findMember = memberRepository.findByEmail(member.getEmail());
-       System.out.println("서비스 계층 이메일 중복체크 메소드 작동");
-        if(findMember != null){
-            throw new IllegalStateException("이미 가입된 메일주소 입니다.");
-        }else {
-            System.out.println("가입이 가능한 이메일 입니다.");
-        }
 
 
-    }*/
 
 
 
