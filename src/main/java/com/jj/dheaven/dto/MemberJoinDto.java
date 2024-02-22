@@ -26,10 +26,10 @@ public class MemberJoinDto {
     private String password;
 
     @NotBlank(message = "닉네임은 필수로 입력하셔야 합니다.")
-    @Length(min = 1, max = 6, message = "1자이상, 6자 이하로 입력해주세요")
+    @Size(min = 1, max = 6, message = "1자이상, 6자 이하로 입력해주세요")
     private String nickname;
 
-    @Length(min = 2, max = 4)
+    @Size(min = 2, max = 4)
     @NotBlank(message = "성함은 필수로 입력하셔야 합니다.")
     private String name;
 

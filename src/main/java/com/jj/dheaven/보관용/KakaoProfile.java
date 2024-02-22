@@ -1,4 +1,4 @@
-package com.jj.dheaven.model;
+package com.jj.dheaven.보관용;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

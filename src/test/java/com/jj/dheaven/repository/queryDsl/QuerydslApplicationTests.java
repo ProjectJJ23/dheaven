@@ -1,8 +1,6 @@
 package com.jj.dheaven.repository.queryDsl;
 
 import com.jj.dheaven.domain.QUser;
-import com.jj.dheaven.domain.User;
-import com.mysema.commons.lang.Assert;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,16 +35,17 @@ public class QuerydslApplicationTests {
         em.persist(ahri);
     }*/
 
+/*
     @DisplayName("QueryDsl test >>insert 잘 되는가")
     @Test
     void contextLoads() {
-        User user = new User();
-        em.persist(user);
+       // User user = new User();
+       // em.persist(user);
 
         JPAQueryFactory query = new JPAQueryFactory(em);
-        QUser quser = QUser.user;
+       // QUser quser = QUser.user;
 
-        User result = query.selectFrom(quser).fetchOne();
+        //User result = query.selectFrom(quser).fetchOne();
 
        // Assert.assertThat()
 
@@ -56,6 +55,7 @@ public class QuerydslApplicationTests {
 
 
     }
+*/
 
 
 

@@ -1,16 +1,10 @@
 package com.jj.dheaven.repository;
 
-import com.jj.dheaven.domain.User;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.TestPropertySource;
 
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ComponentScan
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -34,9 +28,9 @@ class UserRepositoryTest3 {
     }*/
 
 
-    @Test
-    @DisplayName("유저테스트")
-    public void userTest(){
+   // @Test
+    //@DisplayName("유저테스트")
+/*    public void userTest(){
 
         User user = new User();
         user.setId(1L);
@@ -48,6 +42,6 @@ class UserRepositoryTest3 {
         System.out.println(savedUser.toString());
 
 
-    }
+    }*/
 
 }

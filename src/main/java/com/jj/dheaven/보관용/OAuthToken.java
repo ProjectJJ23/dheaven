@@ -1,4 +1,4 @@
-package com.jj.dheaven.model;
+package com.jj.dheaven.보관용;
 
 import lombok.Data;
 
@@ -23,7 +23,7 @@ public class OAuthToken {
 
     /*
     {
-"id":3348280840,
+"id":3388888,
 "connected_at":"2024-02-17T12:13:15Z",
 "properties":{
 "nickname":"J"
@@ -39,7 +39,7 @@ public class OAuthToken {
 "email_needs_agreement":false,
 "is_email_valid":true,
 "is_email_verified":true,
-"email":"ronanrose12@naver.com",
+"email":"@naver.com",
 "has_birthyear":true,
 "birthyear_needs_agreement":false,
 "birthyear":"1990",

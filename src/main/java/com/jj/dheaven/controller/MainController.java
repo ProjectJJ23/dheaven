@@ -1,13 +1,10 @@
 package com.jj.dheaven.controller;
 
-import com.jj.dheaven.domain.User;
 import com.jj.dheaven.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -18,8 +15,8 @@ public class MainController {
     @GetMapping(value = "/test")
     public String test(Model model){
 
-        List<User> userlist = userService.memlist();
-        model.addAttribute("userlist",userlist);
+     //   List<User> userlist = userService.memlist();
+     //   model.addAttribute("userlist",userlist);
         System.out.println("메인컨트롤러 - db test");
 
         return "main/test";

@@ -1,4 +1,4 @@
-package com.jj.dheaven.controller;
+package com.jj.dheaven.보관용;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
