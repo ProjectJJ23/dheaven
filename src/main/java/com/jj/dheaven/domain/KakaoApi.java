@@ -93,31 +93,6 @@ public class KakaoApi {
     }
 
 
-    //다른 버전
-    /*
-    public KakaoProfile getUserInfo(String accessToken) {
-    String reqUrl = "https://kapi.kakao.com/v2/user/me";
-
-    RestTemplate rt = new RestTemplate();
-
-    //HttpHeader 오브젝트
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", "Bearer " + accessToken);
-    headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
-    //http 헤더(headers)를 가진 엔티티
-    HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest =
-            new HttpEntity<>(headers);
-
-    //reqUrl로 Http 요청 , POST 방식
-    ResponseEntity<String> response =
-            rt.exchange(reqUrl, HttpMethod.POST, kakaoProfileRequest, String.class);
-
-    KakaoProfile kakaoProfile = new KakaoProfile(response.getBody());
-
-    return kakaoProfile;
-}
-     */
 
     public HashMap<String, Object> getUserInfo(String accessToken) {
         System.out.println("겟 유저 인포 메서드 발동");
@@ -180,6 +155,8 @@ public class KakaoApi {
 
     public void kakaoLogout(String accessToken) {
         String reqUrl = "https://kapi.kakao.com/v1/user/logout";
+
+        System.out.println("카카오 로그아웃 메서드 작동 ");
 
         try{
             URL url = new URL(reqUrl);

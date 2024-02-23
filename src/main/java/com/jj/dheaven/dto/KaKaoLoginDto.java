@@ -3,7 +3,9 @@ package com.jj.dheaven.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
+@Data
 public class KaKaoLoginDto {
 
     @NotBlank(message = "이메일은 필수로 입력하셔야 합니다.")

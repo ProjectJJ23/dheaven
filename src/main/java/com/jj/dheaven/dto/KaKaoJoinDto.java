@@ -30,29 +30,29 @@ public class KaKaoJoinDto {
     @NotBlank(message = "성함은 필수로 입력하셔야 합니다.")
     private String name;
 
-    @Pattern(regexp = "\\b(19|20)\\d{2}\\b", message = "유효한 출생년도를 입력하세요.")
+    /*@Pattern(regexp = "\\b(19|20)\\d{2}\\b", message = "유효한 출생년도를 입력하세요.")
     @NotBlank(message = "출생년도는 필수로 입력하셔야 합니다.")
     private String birthyear; //1998 형식
 
     @Pattern(regexp = "^(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])$", message = "유효한 생일을 입력하세요.")
     @NotBlank(message = "생일은 필수로 입력하셔야 합니다.")
-    private String birthday; //1203 형식
+    private String birthday; //1203 형식*/
 
     @DateTimeFormat(pattern = "yyyyMMdd")
     @NotBlank(message = "생년월일은 필수로 입력하셔야 합니다.")
     private LocalDate birthdate; //생년월일
 
 
-    private LocalDate parseBirthdate(String birthyear, String birthday){
-        String birthdateStr = birthyear + birthday;
+    public LocalDate parseBirthdate(String birthyear, String birthday){
+        String birthdateStr = birthyear.substring(0,4) + birthday;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate birthdate = LocalDate.parse(birthdateStr, formatter);
-        System.out.println("생년월일kakao 합쳐진거 체크: "+birthdate);
+        System.out.println("생년월일kakao 합쳐진거 체크 dto 란: "+birthdate);
         return birthdate;
     }
 
     public Member toMember(){
-        LocalDate birthdate = parseBirthdate(birthyear, birthday); // 메서드 호출
+        //LocalDate birthdate = parseBirthdate(birthyear, birthday); // 메서드 호출
         return Member.builder()
                 .email(kakao_email)
                 .password(kakao_token)

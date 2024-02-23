@@ -1,4 +1,4 @@
-package com.jj.dheaven.보관용;
+package com.jj.dheaven.model;
 
 import lombok.Data;
 

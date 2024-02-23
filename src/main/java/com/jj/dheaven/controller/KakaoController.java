@@ -3,13 +3,11 @@ package com.jj.dheaven.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jj.dheaven.domain.KakaoApi;
-import com.jj.dheaven.domain.Member;
-import com.jj.dheaven.dto.KaKaoJoinDto;
-import com.jj.dheaven.보관용.KakaoProfile;
-import com.jj.dheaven.보관용.OAuthToken;
-import com.jj.dheaven.service.MemberService;
+import com.jj.dheaven.domain.Roles;
+import com.jj.dheaven.model.KakaoProfile;
+import com.jj.dheaven.model.OAuthToken;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -18,116 +16,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
-import java.util.Map;
-
-@Controller
 @RequiredArgsConstructor
-public class KakaoContoller {
+@Controller
+public class KakaoController {
 
-    private final MemberService memberService;
-    private final HttpServletRequest request;
-    private final KakaoApi kakaoApi;
+    private final HttpServletRequest request; //ip
 
-    
-    //로그인 컨트롤러- 로그인 폼 메서드에 카카오 키도 같이 모델로 전달
+    //@ResponseBody
+    @GetMapping(value = "/auth/kakao/callback")
+    public String kakaoCallback(@RequestParam("code") String code, HttpSession session){
 
-    //다른 유형
-    /*
-    public OAuthToken getOAuthToken(String code){
-    String reqUrl = "https://kauth.kakao.com/oauth/token";
-
-    RestTemplate rt = new RestTemplate();
-
-    //HttpHeader 오브젝트
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
-    //HttpBody 오브젝트
-    MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-    params.add("grant_type", "authorization_code");
-    params.add("client_id", AuthConstUtil.KAKAO_API_KEY);
-    params.add("redirect_uri", AuthConstUtil.KAKAO_REDIRECT_URL);
-    params.add("code", code);
-
-    //http 바디(params)와 http 헤더(headers)를 가진 엔티티
-    HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
-            new HttpEntity<>(params, headers);
-
-    //reqUrl로 Http 요청 , POST 방식
-    ResponseEntity<String> response =
-            rt.exchange(reqUrl, HttpMethod.POST, kakaoTokenRequest, String.class);
-
-    String responseBody = response.getBody();
-
-    Gson gson = new Gson();
-    OAuthToken oAuthToken = gson.fromJson(responseBody, OAuthToken.class);
-
-    return oAuthToken;
-}
-
-     */
-
-
-
-
-    //테스트 카카오 로그인창 로그인 응답
-    //@GetMapping(value = "/auth/kakao/callback")
-    @RequestMapping(value = "/auth/kakao/callback")
-    public String kakaoLgoin(@RequestParam("code") String code, KaKaoJoinDto kaKaoJoinDto
-    , RedirectAttributes redirectAttributes) {
-        // 1. 인가 코드 받기 (@RequestParam String code)
-        System.out.println("카카오 로그인 메서드 작동 ");
-        System.out.println("카카오 로그인 인가코드: "+code);
-        // 2. 토큰 받기
-        String accessToken = kakaoApi.getAccessToken(code);
-        System.out.println("카카오 로그인 토큰: "+accessToken);
-
-        // 3. 사용자 정보 받기
-        Map<String, Object> userInfo = kakaoApi.getUserInfo(accessToken);
-        for (Map.Entry<String, Object> entry : userInfo.entrySet()) {
-            System.out.println("카카오 userINfo 키벨류 : "+entry.getKey() + ": " + entry.getValue());
-        }
-
-        String email = (String)userInfo.get("email");
-        String nickname = (String)userInfo.get("nickname");
-        String name = (String) userInfo.get("name");
-        String birthyear = (String) userInfo.get("birthyear");
-        String birthday = (String) userInfo.get("birthday");
-
-
-
-        System.out.println("email = " + email);
-        System.out.println("nickname = " + nickname);
-        System.out.println("name = " + name);
-        System.out.println("birthyear = " + birthyear);
-        System.out.println("birthday = " + birthday);
-
-        String address = "주소를 나중에 수정해주세요";
-        //kakao 가입 추가코드
-        Member member = new Member(
-                kaKaoJoinDto.getKakao_email(), kaKaoJoinDto.getKakao_token(),
-                kaKaoJoinDto.getNickname(), kaKaoJoinDto.getName(),
-                kaKaoJoinDto.getBirthdate(), address);
-
-        memberService.saveMember(member);
-        System.out.println("kakao 간편회원 가입 완료");
-        redirectAttributes.addAttribute("joinMsg2","kakao 회원가입 완료. 로그인 하세요");
-
-
-        return "redirect:/";
-    }
-
-
-
-    //@GetMapping(value = "/auth/kakao/callback")
-    public @ResponseBody String kakaoCallback(@RequestParam String code){
         //Data를 리턴해주는 컨트롤러 함수
         //System.out.println(code);  // return "카카오 인증 완료"+" 코드값 : "+code;
 
@@ -218,10 +121,24 @@ public class KakaoContoller {
         System.out.println("카카오 아이디(시퀀스): "+kakaoProfile.getId());
         System.out.println("카카오 이메일:" +kakaoProfile.getKakao_account().getEmail());
 
-        return response2.getBody();
+        String info = response2.getBody();
+        System.out.println(info);
+
+        //request.getSession().invalidate();
+        session = request.getSession(true);
+
+        session.setAttribute("sessionEmail",kakaoProfile.getKakao_account().getEmail());
+        session.setAttribute("sessionNickname",kakaoProfile.getKakao_account().getNickname());
+        session.setAttribute("sessionRole", Roles.MEMBER);
+
+
+
+        return "redirect:/";
     }
 
-    //카카오 로그아웃
+
+
+
 
 
 
