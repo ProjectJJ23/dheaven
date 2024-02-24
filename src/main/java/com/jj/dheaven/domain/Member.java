@@ -29,9 +29,11 @@ public class Member extends BaseTimeEntity {
     @Column(name = "password",nullable = true)
     private String password;
 
-    @Column(name = "kakao_token",nullable = true)
-    private String kakao_token;
+    @Column(name = "access_token",nullable = true)
+    private String access_token;
 
+    @Column(name = "refresh_token",nullable = true)
+    private String refresh_token;
 
     @Column(name = "nickname", unique = true,nullable = false)
     private String nickname;
@@ -60,6 +62,23 @@ public class Member extends BaseTimeEntity {
         this.name = name;
         this.birthdate = birthdate;
         this.address = address;
+        this.role = Roles.MEMBER;
+
+    }
+
+
+    //카카오 회원가입시
+    @Builder
+    public Member(String kakao_email, String access_token,
+                  String refresh_token, String nickname,
+                  String name, LocalDate birthdate){
+
+        this.email = kakao_email;
+        this.access_token = access_token;
+        this.refresh_token = refresh_token;
+        this.nickname = nickname;
+        this.name = name;
+        this.birthdate = birthdate;
         this.role = Roles.MEMBER;
 
     }

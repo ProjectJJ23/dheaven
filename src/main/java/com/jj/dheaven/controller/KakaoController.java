@@ -28,7 +28,7 @@ public class KakaoController {
     private final HttpServletRequest request; //ip
 
     //@ResponseBody
-    @GetMapping(value = "/auth/kakao/callback")
+    //@GetMapping(value = "/auth/kakao/callback")
     public String kakaoCallback(@RequestParam("code") String code, HttpSession session){
 
         //Data를 리턴해주는 컨트롤러 함수
