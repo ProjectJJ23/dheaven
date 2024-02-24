@@ -1,15 +1,12 @@
 package com.jj.dheaven.domain;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+//@AllArgsConstructor 생성자에 builer 붙일거면 사용하면 x
 @Entity
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "member")
 @Getter
@@ -29,12 +26,6 @@ public class Member extends BaseTimeEntity {
     @Column(name = "password",nullable = true)
     private String password;
 
-    @Column(name = "access_token",nullable = true)
-    private String access_token;
-
-    @Column(name = "refresh_token",nullable = true)
-    private String refresh_token;
-
     @Column(name = "nickname", unique = true,nullable = false)
     private String nickname;
 
@@ -52,9 +43,17 @@ public class Member extends BaseTimeEntity {
     @Column(name = "role",nullable = false)
     private Roles role;
 
+    //회원정보 업데이트 메서드
+    public Member update(String nickname, String address) {
+        this.nickname  =nickname;
+        this.address = address;
+        return this;
+    }
+
+
     @Builder
     public Member(String email, String password, String nickname,
-                  String name, LocalDate birthdate, String address){
+                  String name, LocalDate birthdate, String address, Roles role){
 
         this.email = email;
         this.password = password;
@@ -62,25 +61,8 @@ public class Member extends BaseTimeEntity {
         this.name = name;
         this.birthdate = birthdate;
         this.address = address;
-        this.role = Roles.MEMBER;
-
-    }
-
-
-    //카카오 회원가입시
-    @Builder
-    public Member(String kakao_email, String access_token,
-                  String refresh_token, String nickname,
-                  String name, LocalDate birthdate){
-
-        this.email = kakao_email;
-        this.access_token = access_token;
-        this.refresh_token = refresh_token;
-        this.nickname = nickname;
-        this.name = name;
-        this.birthdate = birthdate;
-        this.role = Roles.MEMBER;
-
+        this.role = role;
+        System.out.println("멤버 생성자 발생");
     }
 
 

@@ -1,4 +1,4 @@
-package com.jj.dheaven.dto;
+package com.jj.dheaven.보관용;
 
 import com.jj.dheaven.domain.Member;
 import jakarta.validation.constraints.NotBlank;

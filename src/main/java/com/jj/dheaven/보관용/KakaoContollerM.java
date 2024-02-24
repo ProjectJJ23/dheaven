@@ -1,13 +1,10 @@
-package com.jj.dheaven.controller;
+package com.jj.dheaven.보관용;
 
 import com.jj.dheaven.domain.KakaoApi;
-import com.jj.dheaven.domain.Member;
-import com.jj.dheaven.dto.KaKaoJoinDto;
 import com.jj.dheaven.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -63,12 +60,12 @@ public class KakaoContollerM {
             //테이블 넣기
             //String address = "주소를 나중에 작성해주세요";
             //kakao 가입 추가코드
-            Member member = new Member(
+         /*   Member member = new Member(
                     kaKaoJoinDto.getKakao_email(), kaKaoJoinDto.getKakao_token(),
                     kaKaoJoinDto.getNickname(), kaKaoJoinDto.getName(),
-                    kaKaoJoinDto.getBirthdate(), null);
+                    kaKaoJoinDto.getBirthdate(), null);*/
 
-            memberService.saveMember(member);
+            //memberService.saveMember(member);
             System.out.println("kakao 간편회원 가입 완료: kakajoin메서드");
 
 

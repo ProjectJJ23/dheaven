@@ -1,4 +1,4 @@
-package com.jj.dheaven.kakao;
+package com.jj.dheaven.보관용;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

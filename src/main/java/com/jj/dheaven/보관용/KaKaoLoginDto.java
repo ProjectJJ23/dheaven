@@ -1,4 +1,4 @@
-package com.jj.dheaven.dto;
+package com.jj.dheaven.보관용;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -2,6 +2,7 @@ package com.jj.dheaven.controller;
 
 import com.jj.dheaven.domain.KakaoApi;
 import com.jj.dheaven.domain.Member;
+import com.jj.dheaven.domain.Roles;
 import com.jj.dheaven.dto.MemberJoinDto;
 import com.jj.dheaven.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,14 +45,14 @@ public class MemberController {
     //ENDPOINT는 API가 서버에서 리소스에 접근할 수 있도록 가능하게 하는 URL
     //이메일 중복체크를 위한 엔드포인트
     @GetMapping("/mem-emails/{email}/exists")
-    public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable String email){
+    public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable(value = "email") String email){
         System.out.println("컨트롤러 엔드포인트: email값:"+email);
         return ResponseEntity.ok(memberService.checkEmailDuplicate(email));
         //결과물 항상 200 상태다
     }
     //닉네임 중복체크를 위한 엔드포인트
     @GetMapping("/mem-nicknames/{nickname}/exists")
-    public ResponseEntity<Boolean> checkNicknameDuplicate(@PathVariable String nickname){
+    public ResponseEntity<Boolean> checkNicknameDuplicate(@PathVariable(value = "nickname") String nickname){
         System.out.println("컨트롤러 엔드포인트: nickname값:"+nickname);
         return ResponseEntity.ok(memberService.checkNicknameDuplicate(nickname));
         //결과물 항상 200 상태다
@@ -65,13 +66,14 @@ public class MemberController {
 
     @PostMapping(value = "/joinComplete")
     public String joinComplete(MemberJoinDto memberJoinDto, RedirectAttributes redirectAttributes){
-            Member member = new Member(
-                    memberJoinDto.getEmail(), memberJoinDto.getPassword(),
-                    memberJoinDto.getNickname(), memberJoinDto.getName(),
-                    memberJoinDto.getBirthdate(), memberJoinDto.getAddress()
-            );
+            Member member = Member.builder()
+                    .email(memberJoinDto.getEmail()).password(memberJoinDto.getPassword())
+                    .name(memberJoinDto.getName()).nickname(memberJoinDto.getNickname())
+                    .birthdate(memberJoinDto.getBirthdate()).address(memberJoinDto.getAddress())
+                    .role(Roles.MEMBER).build();
+
             memberService.saveMember(member);
-            System.out.println("회원 가입 완료");
+            System.out.println("일반 회원 가입 완료");
             redirectAttributes.addAttribute("joinMsg","회원가입 완료. 로그인 하세요");
 
         return "redirect:/loginForm";

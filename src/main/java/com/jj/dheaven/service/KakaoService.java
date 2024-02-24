@@ -1,12 +1,14 @@
-package com.jj.dheaven.kakao;
+package com.jj.dheaven.service;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jj.dheaven.domain.Member;
+import com.jj.dheaven.domain.Roles;
 import com.jj.dheaven.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.ProtocolException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,15 +22,16 @@ import java.util.HashMap;
 
 
 //@Transactional
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Service
 public class KakaoService {
 
-    private final MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
 
-    public HashMap<String, String>  getAccessToken(String authorize_code){
-        HashMap<String,String> toekns = new HashMap<>();
+    public String getAccessToken(String authorize_code){
+        //HashMap<String,String> toekns = new HashMap<>();
 
         String access_Token = "";
         String refresh_Token = "";
@@ -67,7 +70,7 @@ public class KakaoService {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-           // System.out.println("response body 겟토큰메서드 : " + result);
+           System.out.println("response body 겟토큰메서드 result: " + result);
 
             // Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
             JsonParser parser = new JsonParser();
@@ -77,8 +80,8 @@ public class KakaoService {
             refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
 
 
-            //System.out.println("access_token : " + access_Token);
-            System.out.println("refresh_token : " + refresh_Token);
+            System.out.println("겟토큰 access_token : " + access_Token);
+            System.out.println("겟토큰 refresh_token : " + refresh_Token);
 
             br.close();
             bw.close();
@@ -86,17 +89,17 @@ public class KakaoService {
             e.printStackTrace();
         }
 
-        toekns.put("access_Token",access_Token);
-        toekns.put("refresh_Token",refresh_Token);
+       // toekns.put("access_Token",access_Token);
+       // toekns.put("refresh_Token",refresh_Token);
 
-        return toekns;
+        return access_Token;
     }
 
-    //HashMap<String, Object>
-    public Member getKakaoUserInfo(String access_Token,String refresh_Token){
+    //HashMap<String, Object> ,String refresh_Token)
+    public Member getKakaoUserInfo(String access_Token){
 
         // 요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
-        HashMap<String, Object> userInfo = new HashMap<String, Object>();
+        //HashMap<String, Object> userInfo = new HashMap<String, Object>();
         String reqURL = "https://kapi.kakao.com/v2/user/me";
 
         //카카오 정보를 받을 변수 선언
@@ -116,6 +119,7 @@ public class KakaoService {
 
             int responseCode = conn.getResponseCode();
             System.out.println("responseCode 겟유저메서드 : " + responseCode);
+            //이부분 오류
 
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
@@ -125,7 +129,7 @@ public class KakaoService {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-            //System.out.println("response body겟유저메서드 : " + result);
+            System.out.println("response body겟유저메서드 result: " + result);
 
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
@@ -133,9 +137,11 @@ public class KakaoService {
             JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
+
+            kakao_nickname = properties.getAsJsonObject().get("nickname").getAsString();
+
             kakao_email = kakao_account.getAsJsonObject().get("email").getAsString();
-            kakao_nickname = kakao_account.getAsJsonObject().get("nickname").getAsString();
-            kakao_name = properties.getAsJsonObject().get("name").getAsString();
+            kakao_name = kakao_account.getAsJsonObject().get("name").getAsString();
             kakao_birthyear = kakao_account.getAsJsonObject().get("birthyear").getAsString();
             kakao_birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
 
@@ -161,12 +167,12 @@ public class KakaoService {
 
             kakaoMember = Member.builder()
                     .email(kakao_email)
-                    .access_token(access_Token)
-                    .refresh_token(refresh_Token)
                     .nickname(kakao_nickname)
                     .name(kakao_name)
                     .birthdate(kakao_birthdate)
+                    .role(Roles.MEMBER)
                     .build();
+            memberRepository.save(kakaoMember);
             System.out.println("카카오 회원가입");
         }else { //이미 회원이면
 

@@ -21,8 +21,6 @@ public class QMember extends EntityPathBase<Member> {
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
 
-    public final StringPath access_token = createString("access_token");
-
     public final StringPath address = createString("address");
 
     public final DatePath<java.time.LocalDate> birthdate = createDate("birthdate", java.time.LocalDate.class);
@@ -39,8 +37,6 @@ public class QMember extends EntityPathBase<Member> {
     public final StringPath nickname = createString("nickname");
 
     public final StringPath password = createString("password");
-
-    public final StringPath refresh_token = createString("refresh_token");
 
     public final EnumPath<Roles> role = createEnum("role", Roles.class);
 
