@@ -1,6 +1,6 @@
 package com.jj.dheaven.controller;
 
-import com.jj.dheaven.domain.KakaoApi;
+import com.jj.dheaven.보관용.KakaoApi;
 import com.jj.dheaven.domain.Member;
 import com.jj.dheaven.dto.MemberLoginDto;
 import com.jj.dheaven.service.MemberService;
@@ -54,14 +54,11 @@ public class LoginController {
             session.setAttribute("sessionEmail",member.getEmail());
             session.setAttribute("sessionRole",member.getRole());
             session.setAttribute("sessionNickname",member.getNickname());
-            //System.out.println("테스ㅡ"+member.getEmail());
             System.out.println("회원 아이디: "+memberLoginDto.getEmail());
-            //System.out.println("회원 비번: "+memberLoginDto.getPassword());
             System.out.println("sessionMember: " + session.getAttribute("sessionMember"));
            //System.out.println("sessionEmail: " + session.getAttribute("sessionEmail"));
             session.setMaxInactiveInterval(1800); // Session이 30분동안 유지
             // 로그인 성공 여부를 모델에 추가
-           // model.addAttribute("loginSuccess", true);
 
             return "redirect:/";
         }else{

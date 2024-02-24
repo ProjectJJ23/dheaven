@@ -1,6 +1,5 @@
 package com.jj.dheaven.보관용;
 
-import com.jj.dheaven.domain.KakaoApi;
 import com.jj.dheaven.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

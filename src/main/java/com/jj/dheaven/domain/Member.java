@@ -22,7 +22,7 @@ public class Member extends BaseTimeEntity {
     @Column(name = "email", unique = true,nullable = false)
     private String email; //id 대신 이메일
 
-    //그냥 회원 가입시 패스워드, 카카오 가입시 비번대신 토큰
+    //그냥 회원 가입시 패스워드
     @Column(name = "password",nullable = true)
     private String password;
 
@@ -39,6 +39,15 @@ public class Member extends BaseTimeEntity {
     @Column(name = "address", nullable = true)
     private String address;
 
+    //카카오 키를 위한
+    @Column(name = "kakaoID", nullable = true)
+    private Long kakaoID;
+
+    //일반, 카카오, 구글 등 회원 구분
+ /*   @Enumerated(EnumType.STRING)
+    @Column(name = "memtype", nullable = false)
+    private String memtype;
+*/
     @Enumerated(EnumType.STRING)
     @Column(name = "role",nullable = false)
     private Roles role;
@@ -53,7 +62,7 @@ public class Member extends BaseTimeEntity {
 
     @Builder
     public Member(String email, String password, String nickname,
-                  String name, LocalDate birthdate, String address, Roles role){
+                  String name, LocalDate birthdate, String address, Roles role, Long kakaoID){
 
         this.email = email;
         this.password = password;
@@ -62,6 +71,7 @@ public class Member extends BaseTimeEntity {
         this.birthdate = birthdate;
         this.address = address;
         this.role = role;
+        this.kakaoID = kakaoID;
         System.out.println("멤버 생성자 발생");
     }
 

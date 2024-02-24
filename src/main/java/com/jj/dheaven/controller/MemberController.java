@@ -1,6 +1,6 @@
 package com.jj.dheaven.controller;
 
-import com.jj.dheaven.domain.KakaoApi;
+import com.jj.dheaven.보관용.KakaoApi;
 import com.jj.dheaven.domain.Member;
 import com.jj.dheaven.domain.Roles;
 import com.jj.dheaven.dto.MemberJoinDto;

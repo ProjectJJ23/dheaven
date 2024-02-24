@@ -1,4 +1,4 @@
-package com.jj.dheaven.domain;
+package com.jj.dheaven.보관용;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
