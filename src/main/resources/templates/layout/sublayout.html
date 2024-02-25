@@ -10,9 +10,12 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<!--    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <!--주석되있던곳 위-->
+
+
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="../img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,18 +28,19 @@
     <script src="https://kit.fontawesome.com/7e3d31a32c.js" crossorigin="anonymous"></script><!--지우기-->
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
-    <link rel="stylesheet" href="css/style2.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/substyle.css" type="text/css">
-    <link rel="stylesheet" href="css/member.css">
+    <link rel="stylesheet" href="../css/bootstrap.min2.css" type="text/css">
+    <link rel="stylesheet" href="../css/style2.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/substyle.css" type="text/css">
+    <link rel="stylesheet" href="../css/member.css">
+
 
 </head>
 <body>
@@ -47,13 +51,62 @@
         <footer th:replace="layout/subfooter :: subfooterFragment"></footer>
     </div>
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main2.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.nice-select.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/jquery.slicknav.js"></script>
+    <script src="../js/mixitup.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/main2.js"></script>
 </body>
+<script>
+    //서브 네비바 css깨지는 오류 대신할 함수
+    $(document).ready(function() {
+        // 특정 ID에 대해 마우스를 올렸을 때의 이벤트 핸들러
+        $("#subnav_ch1").hover(function() {
+            // 마우스를 올렸을 때의 스타일 변경
+            $(this).css("color", "#EAA636");
+        }, function() {
+            // 마우스를 내렸을 때의 스타일 변경
+            $(this).css("color", "white");
+        });
+    });
+
+    $(document).ready(function() {
+        // 특정 ID에 대해 마우스를 올렸을 때의 이벤트 핸들러
+        $("#subnav_ch2").hover(function() {
+            // 마우스를 올렸을 때의 스타일 변경
+            $(this).css("color", "#EAA636");
+        }, function() {
+            // 마우스를 내렸을 때의 스타일 변경
+            $(this).css("color", "white");
+        });
+    });
+
+    $(document).ready(function() {
+        // 특정 ID에 대해 마우스를 올렸을 때의 이벤트 핸들러
+        $("#subnav_ch3").hover(function() {
+            // 마우스를 올렸을 때의 스타일 변경
+            $(this).css("color", "#EAA636");
+        }, function() {
+            // 마우스를 내렸을 때의 스타일 변경
+            $(this).css("color", "white");
+        });
+    });
+
+    $(document).ready(function() {
+        // 특정 ID에 대해 마우스를 올렸을 때의 이벤트 핸들러
+        $("#subnav_ch4").hover(function() {
+            // 마우스를 올렸을 때의 스타일 변경
+            $(this).css("color", "#EAA636");
+        }, function() {
+            // 마우스를 내렸을 때의 스타일 변경
+            $(this).css("color", "white");
+        });
+    });
+
+
+
+</script>
 </html>

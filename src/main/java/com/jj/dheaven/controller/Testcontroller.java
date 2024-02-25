@@ -109,12 +109,12 @@ public class Testcontroller {
 
 
 
-    @GetMapping(value = "/")
+  /*  @GetMapping(value = "/")
     public String Test(){
         return "main/index";
     }
-
-    @GetMapping(value = "/list")
+*/
+   /* @GetMapping(value = "/list")
     public String List(){
         return "sub/shop-grid";
     }
@@ -124,7 +124,7 @@ public class Testcontroller {
         return "sub/shop-details";
     }
 
-
+*/
 
     @GetMapping(value = "/1")
     public String Test2(){
@@ -161,8 +161,8 @@ public class Testcontroller {
         return "main/testimonial";
     }
 
-    @GetMapping(value = "/a")
+/*    @GetMapping(value = "/a")
     public String Testa(){
         return "sub/index";
-    }
+    }*/
 }

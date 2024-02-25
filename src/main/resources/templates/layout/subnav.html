@@ -4,6 +4,7 @@
     <a th:href = "@{/}" class="subnav-brand">
         <h1>Drinking Heaven</h1>
     </a>
+
     <div class="subnav-collapse" id="subnavCollapse">
         <div class="subnav-nav mx-auto p-4 p-lg-0">
             <a th:href = "@{/}" class="subnav-item subnav-link active">Home</a>
@@ -28,16 +29,16 @@
             <div class="subnav-item dropdown">
                 <a href="#" class="subnav-link dropdown-toggle" data-bs-toggle="dropdown">안주 카테고리</a>
                 <div class="dropdown-menu m-0">
-                    <a th:href = "@{/join}" class="dropdown-item">맥주</a>
-                    <a th:href = "@{/join}" class="dropdown-item">소주</a>
-                    <a th:href = "@{/join}" class="dropdown-item">와인</a>
-                    <a th:href = "@{/join}" class="dropdown-item">전통주</a>
+                    <a th:href = "@{/product/list}" class="dropdown-item">맥주</a>
+                    <a th:href = "@{/product/list}" class="dropdown-item">소주</a>
+                    <a th:href = "@{/product/list}" class="dropdown-item">와인</a>
+                    <a th:href = "@{/product/list}" class="dropdown-item">전통주</a>
                 </div>
             </div>
-            <a th:href = "@{/join}" class="subnav-item subnav-link">특가/세일</a>
-            <a th:href = "@{/join}" class="subnav-item subnav-link">주류예약</a>
-            <a th:href = "@{/join}" class="subnav-item subnav-link">고객센터</a>
-            <a th:href = "@{/cart}" class="subnav-item subnav-link">장바구니</a>
+            <a th:href = "@{/product/list}" class="nav-item nav-link" id="subnav_ch1" style="color: white; opacity: 1; margin-top: 28px;">특가/세일</a>
+            <a th:href = "@{/product/list}" class="nav-item nav-link" id="subnav_ch2" style="color: white; opacity: 1; margin-top: 28px;">주류예약</a>
+            <a th:href = "@{/product/cart}" class="nav-item nav-link" id="subnav_ch3" style="color: white; opacity: 1; margin-top: 28px;">고객센터</a>
+            <a th:href = "@{/product/cart}" class="nav-item nav-link" id="subnav_ch4" style="color: white; opacity: 1; margin-top: 28px;">장바구니</a>
         </div>
         <th:block th:if="${session.sessionEmail != null}">
             <h6 style="color: white; font-weight: 100;">[[${session.sessionNickname}]]님 환영합니다!</h6>
@@ -45,3 +46,4 @@
     </div>
 
 </nav>
+

@@ -26,7 +26,8 @@ public class Member extends BaseTimeEntity {
     @Column(name = "password",nullable = true)
     private String password;
 
-    @Column(name = "nickname", unique = true,nullable = false)
+    //카카오 회원과 통합테이블이라 닉네임 유니크 제거
+    @Column(name = "nickname", nullable = false)
     private String nickname;
 
     @Column(name = "name",nullable = false)
