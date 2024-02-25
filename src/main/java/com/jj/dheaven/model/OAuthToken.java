@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class OAuthToken {
-    //Data를 오브젝트에 담는다?
+    //카카오 에서 받아오는 json을 담을 자바 클래스
+
     private String access_token;
     private String token_type;
     private String refresh_token;
@@ -21,34 +22,6 @@ public class OAuthToken {
 "refresh_token_expires_in":5183999
 }*/
 
-    /*
-    {
-"id":3388888,
-"connected_at":"2024-02-17T12:13:15Z",
-"properties":{
-"nickname":"J"
-},
-"kakao_account":{
-"profile_nickname_needs_agreement":false,
-"profile":{
-"nickname":"J"
-},
-"name_needs_agreement":false,
-"name":"김지윤",
-"has_email":true,
-"email_needs_agreement":false,
-"is_email_valid":true,
-"is_email_verified":true,
-"email":"@naver.com",
-"has_birthyear":true,
-"birthyear_needs_agreement":false,
-"birthyear":"1990",
-"has_birthday":true,
-"birthday_needs_agreement":false,
-"birthday":"1212",
-"birthday_type":"SOLAR"
-}
-}
-     */
+
 
 }

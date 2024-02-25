@@ -1,9 +1,9 @@
 package com.jj.dheaven.controller;
 
-import com.jj.dheaven.보관용.KakaoApi;
 import com.jj.dheaven.domain.Member;
 import com.jj.dheaven.domain.Roles;
 import com.jj.dheaven.dto.MemberJoinDto;
+import com.jj.dheaven.service.KakaoService;
 import com.jj.dheaven.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +22,13 @@ public class MemberController {
     // static 이하에 있는 /js/**, /css/**, /image/** 허용
     private final MemberService memberService;
     private final HttpServletRequest request;
-    private final KakaoApi kakaoApi;
-
+    private final KakaoService kakaoService;
 
 
     @GetMapping(value = "/join")
     public String join(Model model){
-        model.addAttribute("kakaoApiKey", kakaoApi.getKakaoApiKey());
-        model.addAttribute("redirectUri", kakaoApi.getKakaoRedirectUri());
+        model.addAttribute("kakaoApiKey", kakaoService.getKakaoApiKey());
+        model.addAttribute("redirectUri", kakaoService.getKakaoRedirectUri());
         //System.out.println("kakao key 회원가입 컨트롤러:"+kakaoApi.getKakaoApiKey());
         return "member/join";
     }

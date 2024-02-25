@@ -1,8 +1,8 @@
 package com.jj.dheaven.controller;
 
-import com.jj.dheaven.보관용.KakaoApi;
 import com.jj.dheaven.domain.Member;
 import com.jj.dheaven.dto.MemberLoginDto;
+import com.jj.dheaven.service.KakaoService;
 import com.jj.dheaven.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,13 +21,13 @@ public class LoginController {
 
     private final MemberService memberService;
     private final HttpServletRequest request; //ip
-    private final KakaoApi kakaoApi;
+    private final KakaoService kakaoService;
 
     @GetMapping(value = "/loginForm")
     public String login(Model model , MemberLoginDto memberLoginDto){
         model.addAttribute("memberLoginDto",memberLoginDto);
-        model.addAttribute("kakaoApiKey", kakaoApi.getKakaoApiKey());
-        model.addAttribute("redirectUri", kakaoApi.getKakaoRedirectUri());
+        model.addAttribute("kakaoApiKey", kakaoService.getKakaoApiKey());
+        model.addAttribute("redirectUri", kakaoService.getKakaoRedirectUri());
         //System.out.println("kakao key 로그인 컨트롤러:"+kakaoApi.getKakaoApiKey());
         return "member/loginForm";
     }

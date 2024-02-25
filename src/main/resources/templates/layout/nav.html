@@ -25,7 +25,8 @@
                 <!-- 로그인 후 -->
                      <th:block th:if="${session.sessionMember != null or session.sessionMemberK != null}">
                     <a th:href="@{/mypage}"  class="nav-item nav-link active">마이페이지</a>
-                         <a th:href="${session.sessionMember != null ? '/logout' : '/kakao/logout'}" class="nav-item nav-link active">로그아웃</a>
+                         <a th:href="${session.sessionMember != null ? '/logout' : '/kakao/logout'}"
+                            class="nav-item nav-link active">로그아웃</a>
                    <!--     <h3>[[${session.sessionNickname}]]님 환영합니다!</h3>-->
                     </th:block>
                 <!-- 로그인 후 -->

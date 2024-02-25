@@ -34,29 +34,19 @@ public class KakaoController {
 
     //카카오 로그인 폼은 카카오에서 제공
     //카카오 최초 로그인: 정보제공동의  => 로그인하면서 DB에 정보 들어감
-    //그 후로는 계속 토큰으로 로그인
 
     @RequestMapping(value = "/auth/kakao/callback", method = RequestMethod.GET)
     public String kakaoLogin(@RequestParam(value = "code",required = false) String code){
         //1. 인가코드 받기
         System.out.println("컨트롤러kakao인가코드: "+code);
 
-
         // 2. 카카오계정에 접근할 액세스코드 받기
        // String access_Token = kakaoService.getAccessToken(code);
-       // System.out.println("컨트롤러 kako 액세스코드: "+access_Token);
-
-        //다른방법 시도
         OAuthToken oAuthToken = kakaoService.getOAuthToken(code);
         String access_Token = oAuthToken.getAccess_token();
         String refresh_token = oAuthToken.getRefresh_token();
-
         System.out.println("컨트롤러 access_token: "+access_Token);
         System.out.println("컨트롤러 refresh_token: "+refresh_token);
-
-        // 2-2. OAuthToken 클래스에 토큰,리프레쉬토큰, 유효기간 등을 담기
-
-
 
         //3. 액세스코드로 접근한 카카오 회원의 정보를 가져오기
         Member kakaMember = kakaoService.getKakaoUserInfo(access_Token);
@@ -74,20 +64,16 @@ public class KakaoController {
         session.setAttribute("sessionEmail",kakaMember.getEmail());
         session.setAttribute("sessionRole",kakaMember.getRole());
         session.setAttribute("sessionNickname",kakaMember.getNickname());
+        session.setAttribute("sessionkakaId", kakaMember.getKakaoID()); //카카오 회원넘버
+        session.setAttribute("access_Token", access_Token); //필수
+
         System.out.println("sessionMember: " + session.getAttribute("sessionMemberK"));
         System.out.println("sessionEmail: " + session.getAttribute("sessionEmail"));
-
-        //토큰 세션에 저장
-        if (session.getAttribute("sessionMemberK") != null){
-            session.setAttribute("kakaId", kakaMember.getKakaoID()); //카카오 회원넘버
-            session.setAttribute("access_Token", access_Token);
-            //session.setAttribute("refresh_token", refresh_token);
-        }
-
-
+        System.out.println("sessionkakaId: " + session.getAttribute("sessionkakaId"));
 
         return "redirect:/";
     }
+
 
     @RequestMapping(value = "/kakao/logout")
     public String kakaoLogout(HttpSession session){
@@ -95,24 +81,23 @@ public class KakaoController {
         String access_Token = (String)session.getAttribute("access_Token");
         System.out.println("컨트롤러 로그아웃, 토큰 확인:"+access_Token);
 
+        String kakaoLogoutUrl = "https://kauth.kakao.com/oauth/logout" +
+                "?client_id=" +kakaoService.getKakaoApiKey()+
+                "&logout_redirect_uri="+kakaoService.getKakaoLogoutRedirectUri();
+        // 카카오 로그아웃 페이지로 리다이렉트
+
         if(access_Token != null && !"".equals(access_Token)){
             kakaoService.kakaoLogout(access_Token);
             session.removeAttribute("access_Token");
-            session.removeAttribute("kakaId");
             System.out.println("카카오 액세스토큰 삭제");
+            session.invalidate();
+            System.out.println("카카오 로그아웃, 세션삭제=> Proceeding Call");
+
         }else{
             System.out.println("access_Token is null");
         }
         
-        //세션 제거
-        session = request.getSession(false); //세션이 없는 경우 새 세션 생성 x
-        if(session != null){
-            session.invalidate();
-            System.out.println("카카오 로그아웃, 세션삭제=> Proceeding Call");
-        }
-
-
-        return "redirect:/";
+        return "redirect:" + kakaoLogoutUrl;
     }
 
 
@@ -121,4 +106,4 @@ public class KakaoController {
 
 
 
-}
+}//public

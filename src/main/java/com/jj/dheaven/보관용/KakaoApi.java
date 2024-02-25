@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+/*
 @Data
 @Slf4j
 @Component
@@ -196,3 +197,4 @@ public class KakaoApi {
 
 
 }
+*/

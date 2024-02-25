@@ -16,7 +16,7 @@ public class KakaoContollerM {
 
     private final MemberService memberService;
     private final HttpServletRequest request;
-    private final KakaoApi kakaoApi;
+   // private final KakaoApi kakaoApi;
 
 
     //카카오 간편가입 로직 분리하기
@@ -80,7 +80,7 @@ public class KakaoContollerM {
     //테스트 카카오 로그인창 로그인 응답
     //@GetMapping(value = "/auth/kakao/callback")
    // @RequestMapping(value = "/auth/kakao/callback")
-    public String kakaoLgoin(@RequestParam("code") String code, KaKaoJoinDto kaKaoJoinDto
+ /*   public String kakaoLgoin(@RequestParam("code") String code, KaKaoJoinDto kaKaoJoinDto
     , RedirectAttributes redirectAttributes) {
 
 
@@ -88,7 +88,7 @@ public class KakaoContollerM {
         System.out.println("카카오 로그인 메서드 작동 ");
         System.out.println("카카오 로그인 인가코드: "+code);
         // 2. 토큰 받기
-        String accessToken = kakaoApi.getAccessToken(code);
+        //String accessToken = kakaoApi.getAccessToken(code);
         System.out.println("카카오 로그인 토큰: "+accessToken);
 
         // 3. 사용자 정보 받기
@@ -135,7 +135,7 @@ public class KakaoContollerM {
 
 
         return "redirect:/loginForm";
-    }
+    }*/
 
 
 
@@ -144,7 +144,7 @@ public class KakaoContollerM {
     //카카오 로그아웃
     //@GetMapping(value = "/auth/kakao/logout")
     public String kakaoLout(@RequestParam("accessToken") String accessToken) {
-            kakaoApi.kakaoLogout(accessToken);
+            //kakaoApi.kakaoLogout(accessToken);
             System.out.println("카카오 로그아웃 메서드 발동");
             System.out.println("카카오로그아웃 accessToken: "+accessToken);
 

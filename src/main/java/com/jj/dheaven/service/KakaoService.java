@@ -12,6 +12,7 @@ import com.jj.dheaven.model.OAuthToken;
 import com.jj.dheaven.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -36,12 +37,32 @@ public class KakaoService {
 
     private final MemberRepository memberRepository;
 
+
+    // private properties에 보관할 보안이 필요한 정보들
+    @Value("${kakao.api_key}")
+    private String kakaoApiKey;
+
+    //로그인 리라이렉트
+    @Value("${kakao.redirect_uri}")
+    private String kakaoRedirectUri;
+
+    @Value("${kakao.logoutRedirect_uri}")
+    private String kakaoLogoutRedirectUri;
+    public String getKakaoApiKey(){
+        return this.kakaoApiKey;
+    }
+    public String getKakaoRedirectUri(){
+        return this.kakaoRedirectUri;
+    }
+    public String getKakaoLogoutRedirectUri(){return this.kakaoLogoutRedirectUri;}
+
+
+
+
     // 2-2. OAuthToken 클래스에 토큰,리프레쉬토큰, 유효기간 등을 담기
     public OAuthToken getOAuthToken(String code){
         //인가코드 확인
         System.out.println("인가코드 테스트:"+code);
-
-        //HashMap<String,String> tokenInfo = new HashMap<>();
 
         // POST 방식으로 key=value 데이터를 요청 (카카오쪽으로)
         //라이브러리 RestTemplate,이걸 쓰면 http 요청을 편하게 할 수 있다.
@@ -55,8 +76,8 @@ public class KakaoService {
         // body는 보통 key, value의 쌍으로 이루어지기 때문에 자바에서 제공해주는 MultiValueMap 타입을 사용한다.
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client_id", "ab62b7e0ca424144a4f5e9f13a156b72");
-        params.add("redirect_uri", "http://localhost:8081/auth/kakao/callback");
+        params.add("client_id", kakaoApiKey);
+        params.add("redirect_uri", kakaoRedirectUri);
         params.add("code",code);
 
         // 요청하기 위해 헤더(Header)와 데이터(Body)를 합친다.
@@ -74,7 +95,6 @@ public class KakaoService {
         //여기까지 - code를 받는 인증처리 완료 / 액세스토큰을 받아 권한을 부여받는 과정 끝
 
         // 액세스 토큰으로 카카오쪽으로 카카오로 로그인한 회원의 개인정보를 요청하기
-
         //JSON을 담을 떄 사용하는 라이브러리 Gson, Json Simple, ObjectMappper...
         ObjectMapper objectMapper = new ObjectMapper();
         OAuthToken oauthToken = null;
@@ -95,7 +115,7 @@ public class KakaoService {
         return oauthToken;
     }
 
-
+        //getOAuthToken을 쓰면 딱히 필요없음
         public String getAccessToken(String authorize_code){
         //HashMap<String,String> toekns = new HashMap<>();
 
@@ -117,8 +137,8 @@ public class KakaoService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
 
-            sb.append("&client_id=ab62b7e0ca424144a4f5e9f13a156b72"); //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8081/auth/kakao/callback"); // 본인이 설정한 주소
+            sb.append("&client_id="+kakaoApiKey); //본인이 발급받은 key
+            sb.append("&redirect_uri="+kakaoRedirectUri); // 본인이 설정한 주소
 
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
