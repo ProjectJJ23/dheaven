@@ -18,14 +18,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Member findByEmail(String email);
 
-    //kakao가입전용
-    //Member findByEmailAndBirthdate(String kakao_email, LocalDate kakao_birthdate);
-    //Member findByKakao_idAndEmail(Long kakao_id, String email);
 
+    //kakao가입전용
     Member findByKakaoIDAndEmail(Long kakaoID, String kakao_email);
 
-    //로그인
-    //Member findByEmailAndPassword(String email, String password);
 
     List<Member> findAllBy();
 

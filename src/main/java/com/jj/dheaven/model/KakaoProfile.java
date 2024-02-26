@@ -3,8 +3,8 @@ package com.jj.dheaven.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+//@JsonIgnoreProperties(ignoreUnknown = true)
+//@Data
 public class KakaoProfile {
 
     public Boolean setPrivacyInfo;

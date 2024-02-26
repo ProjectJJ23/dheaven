@@ -24,15 +24,15 @@
             <!-- 로그인 후 -->
 
 
-            <a th:href = "@{/join}" class="subnav-item subnav-link">신상품</a>
+            <a th:href = "@{/product/list}" class="subnav-item subnav-link">신상품</a>
 
             <div class="subnav-item dropdown">
                 <a href="#" class="subnav-link dropdown-toggle" data-bs-toggle="dropdown">안주 카테고리</a>
                 <div class="dropdown-menu m-0">
-                    <a th:href = "@{/product/list}" class="dropdown-item">맥주</a>
-                    <a th:href = "@{/product/list}" class="dropdown-item">소주</a>
-                    <a th:href = "@{/product/list}" class="dropdown-item">와인</a>
-                    <a th:href = "@{/product/list}" class="dropdown-item">전통주</a>
+                    <a th:href = "@{/product/beer/list}" class="dropdown-item">맥주</a>
+                    <a th:href = "@{/product/soju/list}" class="dropdown-item">소주</a>
+                    <a th:href = "@{/product/wine/list}" class="dropdown-item">와인</a>
+                    <a th:href = "@{/product/mak/list}" class="dropdown-item">전통주</a>
                 </div>
             </div>
             <a th:href = "@{/product/list}" class="nav-item nav-link" id="subnav_ch1" style="color: white; opacity: 1; margin-top: 28px;">특가/세일</a>
