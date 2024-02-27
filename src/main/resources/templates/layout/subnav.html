@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <nav th:fragment="subnavFragment" class="subnav" data-wow-delay="0.1s">
     <a th:href = "@{/}" class="subnav-brand">
         <h1>Drinking Heaven</h1>
@@ -23,22 +25,20 @@
             </th:block>
             <!-- 로그인 후 -->
 
-
-            <a th:href = "@{/product/list}" class="subnav-item subnav-link">신상품</a>
-
-            <div class="subnav-item dropdown">
-                <a href="#" class="subnav-link dropdown-toggle" data-bs-toggle="dropdown">안주 카테고리</a>
+            <a th:href = "@{/item/list}" class="nav-item nav-link">신상품</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">안주 카테고리</a>
                 <div class="dropdown-menu m-0">
-                    <a th:href = "@{/product/beer/list}" class="dropdown-item">맥주</a>
-                    <a th:href = "@{/product/soju/list}" class="dropdown-item">소주</a>
-                    <a th:href = "@{/product/wine/list}" class="dropdown-item">와인</a>
-                    <a th:href = "@{/product/mak/list}" class="dropdown-item">전통주</a>
+                    <a th:href = "@{/item/beer/list}" class="dropdown-item">맥주</a>
+                    <a th:href = "@{/item/soju/list}" class="dropdown-item">소주</a>
+                    <a th:href = "@{/item/wine/list}" class="dropdown-item">와인</a>
+                    <a th:href = "@{/item/mak/list}" class="dropdown-item">전통주</a>
                 </div>
             </div>
-            <a th:href = "@{/product/list}" class="nav-item nav-link" id="subnav_ch1" style="color: white; opacity: 1; margin-top: 28px;">특가/세일</a>
-            <a th:href = "@{/product/list}" class="nav-item nav-link" id="subnav_ch2" style="color: white; opacity: 1; margin-top: 28px;">주류예약</a>
-            <a th:href = "@{/product/cart}" class="nav-item nav-link" id="subnav_ch3" style="color: white; opacity: 1; margin-top: 28px;">고객센터</a>
-            <a th:href = "@{/product/cart}" class="nav-item nav-link" id="subnav_ch4" style="color: white; opacity: 1; margin-top: 28px;">장바구니</a>
+            <a th:href = "@{/item/list}" class="nav-item nav-link">특가/세일</a>
+            <a th:href = "@{/item/detail}" class="nav-item nav-link">주류예약</a>
+            <a th:href = "@{/item/cart}" class="nav-item nav-link">고객센터</a>
+            <a th:href = "@{/item/cart}" class="nav-item nav-link">장바구니</a>
         </div>
         <th:block th:if="${session.sessionEmail != null}">
             <h6 style="color: white; font-weight: 100;">[[${session.sessionNickname}]]님 환영합니다!</h6>

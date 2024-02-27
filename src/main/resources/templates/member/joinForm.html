@@ -178,7 +178,7 @@
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
                             var responseData = xhr.responseText; // 서버에서 받은 데이터
-                            if (responseData.trim().toLowerCase() === "true") { // true 또는 false로 반환될 것으로 가정
+                            if (responseData.trim().toLowerCase() === "true") {
                                 errorMessage.textContent = "이미 사용 중인 이메일 주소 입니다.";
                                 errorMessage.style.color = '#fe5147';
                                 errorMessage.style.fontSize = "13px";

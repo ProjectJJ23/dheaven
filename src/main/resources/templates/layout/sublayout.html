@@ -40,13 +40,14 @@
     <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="../css/substyle.css" type="text/css">
     <link rel="stylesheet" href="../css/member.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-mKsC89YF5DJHcF9R+0zBfTC0sCbFb0mMh9PexH9tAL2WAVjUqvpF05vOx2t1BoZE" crossorigin="anonymous"></script>
 
 </head>
 <body>
     <div class="nav-wrap">
         <header th:replace="layout/subheader :: subheaderFragment"></header>
         <nav th:replace="layout/subnav :: subnavFragment"></nav>
+
         <div layout:fragment="content"></div>
         <footer th:replace="layout/subfooter :: subfooterFragment"></footer>
     </div>

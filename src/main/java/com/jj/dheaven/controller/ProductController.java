@@ -4,46 +4,46 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/product")
+//@RequestMapping("/item")
 @Controller
 public class ProductController {
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/item/list")
     public String List(){
-        return "sub/shop-grid";
+        return "item/shop-grid";
     }
 
-    @GetMapping(value = "/detail")
+    @GetMapping(value = "/item/detail")
     public String Detail(){
-        return "sub/shop-details";
+        return "item/shop-details";
     }
 
-    @GetMapping(value = "/cart")
+    @GetMapping(value = "/item/cart")
     public String Cart(){
-        return "sub/shoping-cart";
+        return "item/shoping-cart";
     }
 
 
 
     //주류별 상품 목록 페이지
-    @GetMapping(value = "/beer/list")
+    @GetMapping(value = "/item/beer/list")
     public String beerList(){
-        return "product/category-beer";
+        return "item/beer/category-beer";
     }
 
-    @GetMapping(value = "/wine/list")
+    @GetMapping(value = "/item/wine/list")
     public String wineList(){
-        return "product/category-wine";
+        return "item/wine/category-wine";
     }
 
-    @GetMapping(value = "/soju/list")
+    @GetMapping(value = "/item/soju/list")
     public String sojuList(){
-        return "product/category-soju";
+        return "item/soju/category-soju";
     }
 
-    @GetMapping(value = "/mak/list")
+    @GetMapping(value = "/item/mak/list")
     public String makList(){
-        return "product/category-mak";
+        return "item/mak/category-mak";
     }
 
 
