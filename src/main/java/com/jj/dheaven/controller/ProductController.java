@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductController {
 
     @GetMapping(value = "/item/list")
-    public String List(){
+    public String list(){
         return "item/shop-grid";
     }
 
     @GetMapping(value = "/item/detail")
-    public String Detail(){
+    public String detail(){
         return "item/shop-details";
     }
 
     @GetMapping(value = "/item/cart")
-    public String Cart(){
+    public String cart(){
         return "item/shoping-cart";
     }
 

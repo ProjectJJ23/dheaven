@@ -34,7 +34,7 @@ public class MainController {
         return "main/404";
     }
 
-    @GetMapping(value = "/contact")
+    @GetMapping(value = "/contact2")
     public String contact(){
         return "main/contact";
     }
